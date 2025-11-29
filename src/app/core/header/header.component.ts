@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   federalEntityName = signal('União Federal');
   federalEntityImage = signal('');
-  federalEntityId = signal('1');
   isEstadoHovered = signal(false);
   activeReport = this.storageService.activeReport;
 
@@ -37,10 +36,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(image => {
         this.federalEntityImage.set(image);
       });
-
-    this.storageService.federalEntityId$
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(id => this.federalEntityId.set(id));
   }
 
   ngOnDestroy(): void {

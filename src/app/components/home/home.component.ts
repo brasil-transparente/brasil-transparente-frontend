@@ -16,13 +16,14 @@ import { Subject, takeUntil } from 'rxjs';
 import { DespesaSimplificada } from '../../models/despesa-simplificada.model';
 import { Poder } from '../../models/poder.model';
 import { CommomWithChildren } from '../../models/commom.model';
+import { CarregandoDados } from 'app/carregando-dados/carregando-dados';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, ToggleBarItemComponent]
+  imports: [CommonModule, ToggleBarItemComponent, CarregandoDados]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private readonly apiService: ApiService = inject(ApiService);
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   federalEntityId = '1';
   totalValue = 0;
-  isLoading = false;
+  isLoading = signal(true);
   activeReport = this.storageService.activeReport;
   simplifiedData: DespesaSimplificada[] = [];
   poderes: Poder[] = [];
@@ -69,7 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadData(): void {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.apiService
       .getTotalValueSpent(this.federalEntityId)
       .subscribe(total => {
@@ -87,21 +88,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadSimplifiedReport(): void {
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     this.apiService
       .getDespesaSimplificada(this.federalEntityId)
       .subscribe(data => {
         this.simplifiedData = data;
-        this.isLoading = false;
+        this.isLoading.set(false);
       });
   }
 
   loadDetailedReport(): void {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.apiService.getPoderes(this.federalEntityId).subscribe(poderes => {
       this.poderes = poderes;
-      this.isLoading = false;
+      this.isLoading.set(false);
     });
   }
 

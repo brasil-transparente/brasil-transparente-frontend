@@ -9,9 +9,6 @@ import { Ministerio } from '../../models/ministerio.model';
 import { Orgao } from '../../models/orgao.model';
 import { UnidadeGestora } from '../../models/unidade-gestora.model';
 import { ElementoDespesa } from '../../models/elemento-despesa.model';
-import { RenunciaFiscal } from '../../models/renuncia-fiscal.model';
-import { ValorTotal } from '../../models/valor-total.model';
-import { PaginatedResponse } from '../../models/paginated-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -76,17 +73,5 @@ export class ApiService {
   getElementoDespesa(unidadeId: number): Observable<ElementoDespesa[]> {
     const url = `${ApiService.API_BASE}/unidade-gestora/${unidadeId}/elemento-despesa`;
     return this.getWithCache<ElementoDespesa[]>(url);
-  }
-
-  getRenunciasFiscais(federalEntityId: string, page: number, size: number): Observable<PaginatedResponse<RenunciaFiscal>> {
-    const pageIndex = page - 1;
-    const url = `${ApiService.API_BASE}/unidade-federativa/${federalEntityId}/renuncias-fiscais?page=${pageIndex}&size=${size}`;
-    
-    return this.getWithCache<PaginatedResponse<RenunciaFiscal>>(url);
-  }
-
-  getTotalRenuncias(federalEntityId: string): Observable<ValorTotal> {
-    const url = `${ApiService.API_BASE}/unidade-federativa/${federalEntityId}/renuncias-fiscais/total`;
-    return this.getWithCache<ValorTotal>(url);
   }
 }

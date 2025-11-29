@@ -3,8 +3,8 @@
     <a routerLink="/">
       <img src="/images/white-transparent-small.png" alt="BT Logo" class="header-image" />
     </a>
-    
-    @if(router.url === '/' || router.url === '/renuncias-fiscais'){
+
+    @if(router.url === '/'){
     <nav class="report-nav">
       <button
         routerLink="/estados"
@@ -19,34 +19,20 @@
           isEstadoHovered() ? 'Selecionar outro' : federalEntityName()
         }}</span>
       </button>
-
       <button
-        routerLink="/"
         class="report-button report-button-text-center"
-        [class.active]="activeReport() === reportType.Simplificado && router.url === '/'"
+        [class.active]="activeReport() === reportType.Simplificado"
         (click)="setActiveReport(reportType.Simplificado)"
       >
         Resumo dos Gastos
       </button>
-      
       <button
-        routerLink="/"
         class="report-button report-button-text-center"
-        [class.active]="activeReport() === reportType.Completo && router.url === '/'"
+        [class.active]="activeReport() === reportType.Completo"
         (click)="setActiveReport(reportType.Completo)"
       >
         Gastos Detalhados
       </button>
-
-      @if (federalEntityId() === '1') {
-        <button
-          routerLink="/renuncias-fiscais"
-          class="report-button report-button-text-center"
-          [class.active]="router.url === '/renuncias-fiscais'"
-        >
-          Renúncias Fiscais
-        </button>
-      }
     </nav>
     }
   </div>

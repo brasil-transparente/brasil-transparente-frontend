@@ -1,0 +1,23 @@
+
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.3rem;
+  background-color: var(--azul-brasil);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: var(--transition);
+
+  box-shadow: var(--card-shadow);
+  border: 0.5px solid transparent;
+}
+
+.back-button:hover {
+  background-color: var(--amarelo-ouro);
+  color: var(--azul-brasil);
+  transform: translateY(-1px);
+  border-color: var(--azul-brasil);
+}
