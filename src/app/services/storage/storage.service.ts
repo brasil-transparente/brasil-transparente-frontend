@@ -64,8 +64,8 @@ export class StorageService {
 
     try {
       const { data, timestamp } = JSON.parse(cached);
-      // 1 dia = 86400000 ms
-      if (Date.now() - timestamp < 86400000) {
+      // 1 hora = 600000 ms
+      if (Date.now() - timestamp < 600000) {
         return data as T;
       }
     } catch {
