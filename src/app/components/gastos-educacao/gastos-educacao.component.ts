@@ -40,82 +40,97 @@ export class GastosEducacaoComponent implements OnInit {
   }
 
   setupSEO(): void {
+    // Remove existing meta tags to ensure clean override
+    this.metaService.removeTag('property="og:title"');
+    this.metaService.removeTag('property="og:description"');
+    this.metaService.removeTag('property="og:url"');
+    this.metaService.removeTag('property="og:type"');
+    this.metaService.removeTag('property="og:site_name"');
+    this.metaService.removeTag('property="og:locale"');
+    this.metaService.removeTag('property="og:image"');
+    this.metaService.removeTag('property="og:image:width"');
+    this.metaService.removeTag('property="og:image:height"');
+    this.metaService.removeTag('property="og:image:alt"');
+    this.metaService.removeTag('name="twitter:card"');
+    this.metaService.removeTag('name="twitter:title"');
+    this.metaService.removeTag('name="twitter:description"');
+    
     // Configuração de SEO para a página
     this.titleService.setTitle('Gastos da União com Educação: Análise Completa 2025 | Brasil Transparente');
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       name: 'description', 
       content: 'Veja a análise detalhada dos gastos do Brasil com educação em 2025. Entenda os R$ 234,73 bilhões distribuídos em 6 blocos institucionais: FNDE, Universidades, Institutos Federais e mais.' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       name: 'keywords', 
       content: 'gastos educação 2025, orçamento educação federal, despesas MEC 2025, FNDE, universidades federais, institutos federais, CAPES, hospitais universitários, blocos institucionais educação' 
     });
     
     // Open Graph - Social Media
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:title', 
       content: 'Gastos da União com Educação: Análise Completa 2025' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:description', 
       content: 'Análise detalhada dos R$ 234,73 bilhões gastos com educação federal em 2025. Distribuição por 6 blocos institucionais: FNDE, Universidades, Institutos e mais.' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:type', 
       content: 'article' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:url', 
       content: 'https://brasiltransparente.digital/gastos-educacao' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:site_name', 
       content: 'Brasil Transparente' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:locale', 
       content: 'pt_BR' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:image', 
       content: 'https://brasiltransparente.digital/images/logo.webp' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:image:width', 
       content: '1200' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:image:height', 
       content: '630' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       property: 'og:image:alt', 
       content: 'Brasil Transparente - Logo' 
     });
     
     // Twitter Card
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       name: 'twitter:card', 
       content: 'summary_large_image' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       name: 'twitter:title', 
       content: 'Gastos da União com Educação: Análise Completa 2025' 
     });
     
-    this.metaService.updateTag({ 
+    this.metaService.addTag({ 
       name: 'twitter:description', 
       content: 'Análise detalhada dos R$ 234,73 bilhões gastos com educação federal em 2025.' 
     });
