@@ -81,6 +81,26 @@ export class CustoJurosDividaComponent implements OnInit {
       content: 'pt_BR' 
     });
     
+    this.metaService.updateTag({ 
+      property: 'og:image', 
+      content: 'https://brasiltransparente.digital/images/logo.webp' 
+    });
+    
+    this.metaService.updateTag({ 
+      property: 'og:image:width', 
+      content: '1200' 
+    });
+    
+    this.metaService.updateTag({ 
+      property: 'og:image:height', 
+      content: '630' 
+    });
+    
+    this.metaService.updateTag({ 
+      property: 'og:image:alt', 
+      content: 'Brasil Transparente - Logo' 
+    });
+    
     // Twitter Card
     this.metaService.updateTag({ 
       name: 'twitter:card', 
@@ -112,16 +132,6 @@ export class CustoJurosDividaComponent implements OnInit {
     this.metaService.updateTag({ 
       name: 'publisher', 
       content: 'Brasil Transparente' 
-    });
-    
-    this.metaService.updateTag({ 
-      name: 'article:published_time', 
-      content: '2026-02-10T10:00:00-03:00' 
-    });
-    
-    this.metaService.updateTag({ 
-      property: 'article:published_time', 
-      content: '2026-02-10T10:00:00-03:00' 
     });
     
     // Informações Adicionais
@@ -173,11 +183,16 @@ export class CustoJurosDividaComponent implements OnInit {
       content: currentDate 
     });
     
-    // Canonical URL
-    this.metaService.updateTag({ 
-      property: 'canonical', 
-      content: 'https://brasiltransparente.digital/custo-juros-divida' 
-    });
+    // Canonical URL - manipula o link tag diretamente
+    const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (canonicalLink) {
+      canonicalLink.href = 'https://brasiltransparente.digital/custo-juros-divida';
+    } else {
+      const link: HTMLLinkElement = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = 'https://brasiltransparente.digital/custo-juros-divida';
+      document.head.appendChild(link);
+    }
   }
 
   loadData(): void {

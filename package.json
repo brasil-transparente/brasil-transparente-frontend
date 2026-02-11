@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration development",
+    "start:ssr": "node dist/server/main.mjs",
     "prod": "ng serve --configuration production",
     "build:production": "ng build --configuration production",
+    "build:ssr": "ng build --configuration production && ng run brasil-transparente:server",
     "build:dev": "ng build --configuration development",
     "build:testing": "ng build --configuration testing",
     "test": "ng test",
