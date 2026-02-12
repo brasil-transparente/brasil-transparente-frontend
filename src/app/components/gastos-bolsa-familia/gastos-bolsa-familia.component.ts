@@ -40,168 +40,21 @@ export class GastosBolsaFamiliaComponent implements OnInit {
   }
 
   setupSEO(): void {
-    // Remove existing meta tags to ensure clean override
-    this.metaService.removeTag('property="og:title"');
-    this.metaService.removeTag('property="og:description"');
-    this.metaService.removeTag('property="og:url"');
-    this.metaService.removeTag('property="og:type"');
-    this.metaService.removeTag('property="og:site_name"');
-    this.metaService.removeTag('property="og:locale"');
-    this.metaService.removeTag('property="og:image"');
-    this.metaService.removeTag('property="og:image:width"');
-    this.metaService.removeTag('property="og:image:height"');
-    this.metaService.removeTag('property="og:image:alt"');
-    this.metaService.removeTag('name="twitter:card"');
-    this.metaService.removeTag('name="twitter:title"');
-    this.metaService.removeTag('name="twitter:description"');
-    
-    // Configuração de SEO para a página
     this.titleService.setTitle('Gasto com Bolsa Família: Análise Completa 2025 | Brasil Transparente');
-    
-    this.metaService.addTag({ 
-      name: 'description', 
-      content: 'Veja a análise detalhada dos gastos do Brasil com o programa Bolsa Família em 2025. Entenda o impacto de R$ 162 bilhões e os benefícios para a população em vulnerabilidade socioeconômica.' 
-    });
-    
-    this.metaService.addTag({ 
-      name: 'keywords', 
-      content: 'gasto bolsa família 2025, programa bolsa família orçamento, transferência de renda Brasil, gastos sociais federais, auxílio Brasil 2025, programas sociais governo, políticas sociais, combate pobreza' 
-    });
-    
-    // Open Graph - Social Media
-    this.metaService.addTag({ 
-      property: 'og:title', 
-      content: 'Gasto com Bolsa Família: Análise Completa 2025' 
-    });
-    
-    this.metaService.addTag({ 
-      property: 'og:description', 
-      content: 'Análise detalhada dos R$ 162 bilhões gastos com o Bolsa Família em 2025. Impacto social e orçamentário do programa.' 
-    });
-    
-    this.metaService.addTag({ 
-      property: 'og:type', 
-      content: 'article' 
-    });
-    
-    this.metaService.addTag({ 
-      property: 'og:url', 
-      content: 'https://brasiltransparente.digital/gastos-bolsa-familia' 
-    });
-    
-    this.metaService.addTag({ 
-      property: 'og:site_name', 
-      content: 'Brasil Transparente' 
-    });
-    
-    this.metaService.addTag({ 
-      property: 'og:locale', 
-      content: 'pt_BR' 
-    });
-    
-    this.metaService.addTag({ 
-      property: 'og:image', 
-      content: 'https://brasiltransparente.digital/images/logo-white-bg.png' 
-    });
-    
-    this.metaService.addTag({ 
-      property: 'og:image:width', 
-      content: '1200' 
-    });
-    
-    this.metaService.addTag({ 
-      property: 'og:image:height', 
-      content: '630' 
-    });
-    
-    this.metaService.addTag({ 
-      property: 'og:image:alt', 
-      content: 'Brasil Transparente - Logo' 
-    });
-    
-    // Twitter Card
-    this.metaService.addTag({ 
-      name: 'twitter:card', 
-      content: 'summary_large_image' 
-    });
-    
-    this.metaService.addTag({ 
-      name: 'twitter:title', 
-      content: 'Gasto com Bolsa Família: Análise Completa 2025' 
-    });
-    
-    this.metaService.addTag({ 
-      name: 'twitter:description', 
-      content: 'Análise detalhada dos R$ 162 bilhões gastos com o Bolsa Família em 2025.' 
-    });
-    
-    // Robots e Indexação
-    this.metaService.updateTag({ 
-      name: 'robots', 
-      content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' 
-    });
-    
-    // Autor e Publicação
-    this.metaService.updateTag({ 
-      name: 'author', 
-      content: 'Brasil Transparente' 
-    });
-    
-    this.metaService.updateTag({ 
-      name: 'publisher', 
-      content: 'Brasil Transparente' 
-    });
-    
-    // Informações Adicionais
-    this.metaService.updateTag({ 
-      name: 'language', 
-      content: 'pt-BR' 
-    });
-    
-    this.metaService.updateTag({ 
-      name: 'geo.country', 
-      content: 'BR' 
-    });
-    
-    this.metaService.updateTag({ 
-      name: 'coverage', 
-      content: 'Worldwide' 
-    });
-    
-    this.metaService.updateTag({ 
-      name: 'distribution', 
-      content: 'Global' 
-    });
-    
-    this.metaService.updateTag({ 
-      name: 'rating', 
-      content: 'General' 
-    });
-    
-    // Tema e Categoria
-    this.metaService.updateTag({ 
-      name: 'topic', 
-      content: 'Programa Bolsa Família, Transferência de Renda, Políticas Sociais 2025, Combate à Pobreza' 
-    });
-    
-    this.metaService.updateTag({ 
-      name: 'category', 
-      content: 'Políticas Sociais, Assistência Social, Desenvolvimento Social' 
-    });
-    
-    // Data de Publicação (atual)
-    const currentDate = new Date().toISOString().split('T')[0];
-    this.metaService.updateTag({ 
-      name: 'article:published_time', 
-      content: currentDate 
-    });
-    
-    this.metaService.updateTag({ 
-      name: 'article:modified_time', 
-      content: currentDate 
-    });
-    
-    // Canonical URL - manipula o link tag diretamente
+
+    this.metaService.updateTag({ name: 'description', content: 'Veja a análise detalhada dos gastos do Brasil com o programa Bolsa Família em 2025. Entenda o impacto de R$ 162 bilhões e os benefícios para a população em vulnerabilidade socioeconômica.' });
+
+    this.metaService.updateTag({ property: 'og:title', content: 'Gasto com Bolsa Família: Análise Completa 2025' });
+    this.metaService.updateTag({ property: 'og:description', content: 'Análise detalhada dos R$ 162 bilhões gastos com o Bolsa Família em 2025. Impacto social e orçamentário do programa.' });
+    this.metaService.updateTag({ property: 'og:image', content: 'https://brasiltransparente.digital/images/logo-white-bg.png' });
+    this.metaService.updateTag({ property: 'og:url', content: 'https://brasiltransparente.digital/gastos-bolsa-familia' });
+    this.metaService.updateTag({ property: 'og:type', content: 'article' });
+
+    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.updateTag({ name: 'twitter:title', content: 'Gasto com Bolsa Família: Análise Completa 2025' });
+    this.metaService.updateTag({ name: 'twitter:description', content: 'Análise detalhada dos R$ 162 bilhões gastos com o Bolsa Família em 2025.' });
+    this.metaService.updateTag({ name: 'twitter:image', content: 'https://brasiltransparente.digital/images/logo-white-bg.png' });
+
     const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (canonicalLink) {
       canonicalLink.href = 'https://brasiltransparente.digital/gastos-bolsa-familia';
