@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Title, Meta } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 
 export interface SeoConfig {
   title: string;
@@ -25,7 +25,6 @@ export interface SeoConfig {
 })
 export class SeoService {
   private readonly titleService: Title = inject(Title);
-  private readonly metaService: Meta = inject(Meta);
   private readonly document: Document = inject(DOCUMENT);
 
   private readonly defaultImage = 'https://brasiltransparente.digital/images/logo-complete-white.png';
@@ -37,23 +36,49 @@ export class SeoService {
   setSeo(config: SeoConfig): void {
     this.titleService.setTitle(`${config.title} | ${this.siteName}`);
 
-    this.metaService.updateTag({ name: 'description', content: config.description });
+    this.updateMetaByName('description', config.description);
 
-    this.metaService.updateTag({ property: 'og:title', content: config.ogTitle ?? config.title });
-    this.metaService.updateTag({ property: 'og:description', content: config.ogDescription ?? config.description });
-    this.metaService.updateTag({ property: 'og:image', content: config.ogImage ?? this.defaultImage });
-    this.metaService.updateTag({ property: 'og:image:width', content: config.ogImageWidth ?? this.defaultImageWidth });
-    this.metaService.updateTag({ property: 'og:image:height', content: config.ogImageHeight ?? this.defaultImageHeight });
-    this.metaService.updateTag({ property: 'og:image:alt', content: config.ogImageAlt ?? this.defaultImageAlt });
-    this.metaService.updateTag({ property: 'og:url', content: config.ogUrl });
-    this.metaService.updateTag({ property: 'og:type', content: config.ogType ?? 'website' });
+    this.updateMetaByProperty('og:title', config.ogTitle ?? config.title);
+    this.updateMetaByProperty('og:description', config.ogDescription ?? config.description);
+    this.updateMetaByProperty('og:image', config.ogImage ?? this.defaultImage);
+    this.updateMetaByProperty('og:image:width', config.ogImageWidth ?? this.defaultImageWidth);
+    this.updateMetaByProperty('og:image:height', config.ogImageHeight ?? this.defaultImageHeight);
+    this.updateMetaByProperty('og:image:alt', config.ogImageAlt ?? this.defaultImageAlt);
+    this.updateMetaByProperty('og:url', config.ogUrl);
+    this.updateMetaByProperty('og:type', config.ogType ?? 'website');
 
-    this.metaService.updateTag({ name: 'twitter:card', content: config.twitterCard ?? 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: config.twitterTitle ?? config.ogTitle ?? config.title });
-    this.metaService.updateTag({ name: 'twitter:description', content: config.twitterDescription ?? config.ogDescription ?? config.description });
-    this.metaService.updateTag({ name: 'twitter:image', content: config.twitterImage ?? config.ogImage ?? this.defaultImage });
+    this.updateMetaByName('twitter:card', config.twitterCard ?? 'summary_large_image');
+    this.updateMetaByName('twitter:title', config.twitterTitle ?? config.ogTitle ?? config.title);
+    this.updateMetaByName('twitter:description', config.twitterDescription ?? config.ogDescription ?? config.description);
+    this.updateMetaByName('twitter:image', config.twitterImage ?? config.ogImage ?? this.defaultImage);
 
     this.updateCanonicalUrl(config.canonicalUrl);
+  }
+
+  private updateMetaByName(name: string, content: string): void {
+    const head = this.document.head;
+    let element = head.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+    if (element) {
+      element.setAttribute('content', content);
+    } else {
+      element = this.document.createElement('meta');
+      element.setAttribute('name', name);
+      element.setAttribute('content', content);
+      head.appendChild(element);
+    }
+  }
+
+  private updateMetaByProperty(property: string, content: string): void {
+    const head = this.document.head;
+    let element = head.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+    if (element) {
+      element.setAttribute('content', content);
+    } else {
+      element = this.document.createElement('meta');
+      element.setAttribute('property', property);
+      element.setAttribute('content', content);
+      head.appendChild(element);
+    }
   }
 
   private updateCanonicalUrl(url: string): void {
