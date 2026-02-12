@@ -8,6 +8,9 @@ export interface SeoConfig {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  ogImageWidth?: string;
+  ogImageHeight?: string;
+  ogImageAlt?: string;
   ogUrl: string;
   ogType?: string;
   twitterCard?: string;
@@ -25,7 +28,10 @@ export class SeoService {
   private readonly metaService: Meta = inject(Meta);
   private readonly document: Document = inject(DOCUMENT);
 
-  private readonly defaultImage = 'https://brasiltransparente.digital/images/logo.webp';
+  private readonly defaultImage = 'https://brasiltransparente.digital/images/logo-complete-white.png';
+  private readonly defaultImageWidth = '1200';
+  private readonly defaultImageHeight = '630';
+  private readonly defaultImageAlt = 'Brasil Transparente - Logo';
   private readonly siteName = 'Brasil Transparente';
 
   setSeo(config: SeoConfig): void {
@@ -36,6 +42,9 @@ export class SeoService {
     this.metaService.updateTag({ property: 'og:title', content: config.ogTitle ?? config.title });
     this.metaService.updateTag({ property: 'og:description', content: config.ogDescription ?? config.description });
     this.metaService.updateTag({ property: 'og:image', content: config.ogImage ?? this.defaultImage });
+    this.metaService.updateTag({ property: 'og:image:width', content: config.ogImageWidth ?? this.defaultImageWidth });
+    this.metaService.updateTag({ property: 'og:image:height', content: config.ogImageHeight ?? this.defaultImageHeight });
+    this.metaService.updateTag({ property: 'og:image:alt', content: config.ogImageAlt ?? this.defaultImageAlt });
     this.metaService.updateTag({ property: 'og:url', content: config.ogUrl });
     this.metaService.updateTag({ property: 'og:type', content: config.ogType ?? 'website' });
 

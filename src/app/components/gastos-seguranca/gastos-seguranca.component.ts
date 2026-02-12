@@ -42,10 +42,14 @@ export class GastosSegurancaComponent implements OnInit {
     this.seoService.setSeo({
       title: 'Gastos Federais com Segurança Pública: Análise Completa 2025',
       description: 'Veja a análise detalhada dos gastos do Brasil com segurança pública em 2025. Entenda o investimento de R$ 45,2 bilhões em programas de segurança e prevenção.',
+      ogTitle: 'Gastos com Segurança Pública - Análise 2025',
       ogDescription: 'Análise detalhada dos R$ 45,2 bilhões investidos em segurança pública federal em 2025. Programas e impactos na redução da criminalidade.',
+      ogImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       ogUrl: 'https://brasiltransparente.digital/gastos-seguranca',
       ogType: 'article',
+      twitterTitle: 'Gastos com Segurança Pública - Análise 2025',
       twitterDescription: 'Análise detalhada dos R$ 45,2 bilhões investidos em segurança pública federal em 2025.',
+      twitterImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       canonicalUrl: 'https://brasiltransparente.digital/gastos-seguranca'
     });
   }

@@ -23,9 +23,13 @@ export class OrigemComponent implements OnInit {
     this.seoService.setSeo({
       title: 'Fontes de Dados Oficiais: Origem das Informações',
       description: 'Conheça as fontes oficiais dos dados do Brasil Transparente: SIAFI, SIGPLAN, Portal da Transparência, PLOA 2025 e outros sistemas governamentais oficiais.',
+      ogTitle: 'Fontes de Dados Oficiais',
       ogDescription: 'Conheça as fontes oficiais dos dados do Brasil Transparente: SIAFI, SIGPLAN, Portal da Transparência e outros sistemas governamentais.',
+      ogImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       ogUrl: 'https://brasiltransparente.digital/origem',
+      twitterTitle: 'Fontes de Dados Oficiais',
       twitterDescription: 'Conheça as fontes oficiais dos dados do Brasil Transparente: SIAFI, SIGPLAN, Portal da Transparência.',
+      twitterImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       canonicalUrl: 'https://brasiltransparente.digital/origem'
     });
   }

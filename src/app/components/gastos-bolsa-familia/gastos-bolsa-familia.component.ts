@@ -42,12 +42,14 @@ export class GastosBolsaFamiliaComponent implements OnInit {
     this.seoService.setSeo({
       title: 'Gasto com Bolsa Família: Análise Completa 2025',
       description: 'Veja a análise detalhada dos gastos do Brasil com o programa Bolsa Família em 2025. Entenda o impacto de R$ 162 bilhões e os benefícios para a população em vulnerabilidade socioeconômica.',
+      ogTitle: 'Gasto com Bolsa Família - Análise 2025',
       ogDescription: 'Análise detalhada dos R$ 162 bilhões gastos com o Bolsa Família em 2025. Impacto social e orçamentário do programa.',
-      ogImage: 'https://brasiltransparente.digital/images/logo-white-bg.png',
+      ogImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       ogUrl: 'https://brasiltransparente.digital/gastos-bolsa-familia',
       ogType: 'article',
+      twitterTitle: 'Gasto com Bolsa Família - Análise 2025',
       twitterDescription: 'Análise detalhada dos R$ 162 bilhões gastos com o Bolsa Família em 2025.',
-      twitterImage: 'https://brasiltransparente.digital/images/logo-white-bg.png',
+      twitterImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       canonicalUrl: 'https://brasiltransparente.digital/gastos-bolsa-familia'
     });
   }

@@ -20,9 +20,13 @@ export class SobreComponent implements OnInit {
     this.seoService.setSeo({
       title: 'Sobre o Brasil Transparente: Missão e Valores',
       description: 'Conheça o Brasil Transparente, plataforma dedicada à transparência dos gastos públicos federais. Nossa missão é tornar os dados do orçamento da União acessíveis a todos os cidadãos.',
+      ogTitle: 'Brasil Transparente - Sobre',
       ogDescription: 'Conheça o Brasil Transparente, plataforma dedicada à transparência dos gastos públicos federais e acesso democrático aos dados do orçamento.',
+      ogImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       ogUrl: 'https://brasiltransparente.digital/sobre',
+      twitterTitle: 'Brasil Transparente - Sobre',
       twitterDescription: 'Conheça o Brasil Transparente, plataforma dedicada à transparência dos gastos públicos federais.',
+      twitterImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       canonicalUrl: 'https://brasiltransparente.digital/sobre'
     });
   }

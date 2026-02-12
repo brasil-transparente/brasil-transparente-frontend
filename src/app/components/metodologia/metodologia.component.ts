@@ -20,9 +20,13 @@ export class MetodologiaComponent implements OnInit {
     this.seoService.setSeo({
       title: 'Metodologia de Análise: Como Processamos os Dados',
       description: 'Entenda a metodologia utilizada pelo Brasil Transparente para processar e analisar dados do orçamento federal. Conheça nossas técnicas de normalização, classificação e visualização.',
+      ogTitle: 'Metodologia de Análise',
       ogDescription: 'Entenda a metodologia utilizada pelo Brasil Transparente para processar e analisar dados do orçamento federal com precisão e transparência.',
+      ogImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       ogUrl: 'https://brasiltransparente.digital/metodologia',
+      twitterTitle: 'Metodologia de Análise',
       twitterDescription: 'Entenda a metodologia utilizada pelo Brasil Transparente para processar e analisar dados do orçamento federal.',
+      twitterImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       canonicalUrl: 'https://brasiltransparente.digital/metodologia'
     });
   }

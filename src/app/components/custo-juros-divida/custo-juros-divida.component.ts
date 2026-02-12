@@ -39,10 +39,14 @@ export class CustoJurosDividaComponent implements OnInit {
     this.seoService.setSeo({
       title: 'Custo com Juros da Dívida Pública Federal: Análise Completa 2025',
       description: 'Entenda o custo dos juros da dívida pública federal em 2025, seu impacto no orçamento da União e como essa despesa afeta prioridades como saúde, educação e investimentos.',
+      ogTitle: 'Custo com Juros da Dívida Pública - Análise 2025',
       ogDescription: 'Análise do custo com juros da dívida pública federal em 2025 e seu impacto no orçamento da União.',
+      ogImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       ogUrl: 'https://brasiltransparente.digital/custo-juros-divida',
       ogType: 'article',
+      twitterTitle: 'Custo com Juros da Dívida Pública - Análise 2025',
       twitterDescription: 'Análise detalhada do custo com juros da dívida pública federal em 2025 e seu impacto no orçamento.',
+      twitterImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       canonicalUrl: 'https://brasiltransparente.digital/custo-juros-divida'
     });
   }

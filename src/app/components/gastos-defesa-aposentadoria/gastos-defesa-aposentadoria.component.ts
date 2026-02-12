@@ -42,10 +42,14 @@ export class GastosDefesaAposentadoriaComponent implements OnInit {
     this.seoService.setSeo({
       title: 'Gastos no Ministério da Defesa - Aposentadorias Militares: Análise Completa 2025',
       description: 'Veja a análise detalhada dos gastos do Brasil com aposentadorias e pensões militares em 2025. Entenda o impacto de R$ 63,994 bilhões no orçamento federal e PIB.',
+      ogTitle: 'Aposentadorias Militares - Análise 2025',
       ogDescription: 'Análise detalhada dos R$ 63,994 bilhões gastos com aposentadorias e pensões militares em 2025. Impacto de 2,18% no orçamento federal.',
+      ogImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       ogUrl: 'https://brasiltransparente.digital/gastos-defesa-aposentadoria',
       ogType: 'article',
+      twitterTitle: 'Aposentadorias Militares - Análise 2025',
       twitterDescription: 'Análise detalhada dos R$ 63,994 bilhões gastos com aposentadorias militares em 2025.',
+      twitterImage: 'https://brasiltransparente.digital/images/logo-complete-white.png',
       canonicalUrl: 'https://brasiltransparente.digital/gastos-defesa-aposentadoria'
     });
   }
