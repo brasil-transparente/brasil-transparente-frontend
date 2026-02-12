@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { VoltarInicioComponent } from '../voltar-inicio/voltar-inicio.component';
+import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
   selector: 'app-analises',
@@ -14,8 +15,22 @@ import { VoltarInicioComponent } from '../voltar-inicio/voltar-inicio.component'
   styleUrl: './analises.component.scss',
   standalone: true
 })
-export class AnalisesComponent {
-  
+export class AnalisesComponent implements OnInit {
+  private readonly seoService: SeoService = inject(SeoService);
+
+  ngOnInit(): void {
+    this.setupSEO();
+  }
+
+  setupSEO(): void {
+    this.seoService.setSeo({
+      title: 'Análises dos Gastos Públicos Federais 2025',
+      description: 'Explore análises detalhadas dos gastos públicos federais do Brasil em 2025: aposentadorias, educação, segurança, Bolsa Família e mais.',
+      ogUrl: 'https://brasiltransparente.digital/analises',
+      canonicalUrl: 'https://brasiltransparente.digital/analises'
+    });
+  }
+
   analyses = [
     {
       id: 'aposentadorias-pensoes',

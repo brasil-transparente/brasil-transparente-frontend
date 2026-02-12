@@ -17,6 +17,7 @@ import { Poder } from '../../models/poder.model';
 import { CommomWithChildren } from '../../models/commom.model';
 import { ReportType } from '../../models/tipos-relatorios.model';
 import { CarregandoDados } from 'app/carregando-dados/carregando-dados';
+import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
   selector: 'app-gastos-detalhados',
@@ -30,6 +31,7 @@ export class GastosDetalhadosComponent implements OnInit, OnDestroy {
   private readonly apiService: ApiService = inject(ApiService);
   private readonly dataService: DataService = inject(DataService);
   private readonly storageService: StorageService = inject(StorageService);
+  private readonly seoService: SeoService = inject(SeoService);
   private destroy$ = new Subject<void>();
 
   federalEntityId = '1';
@@ -41,12 +43,22 @@ export class GastosDetalhadosComponent implements OnInit, OnDestroy {
   ReportType = ReportType;
 
   ngOnInit(): void {
+    this.setupSEO();
     this.storageService.federalEntityId$
       .pipe(takeUntil(this.destroy$))
       .subscribe(id => {
         this.federalEntityId = id;
         this.loadData();
       });
+  }
+
+  setupSEO(): void {
+    this.seoService.setSeo({
+      title: 'Gastos Detalhados do Orçamento Federal 2025',
+      description: 'Explore todos os gastos detalhados do orçamento federal brasileiro em 2025, organizados por poderes, ministérios, órgãos e unidades gestoras.',
+      ogUrl: 'https://brasiltransparente.digital/gastos-detalhados',
+      canonicalUrl: 'https://brasiltransparente.digital/gastos-detalhados'
+    });
   }
 
   ngOnDestroy(): void {

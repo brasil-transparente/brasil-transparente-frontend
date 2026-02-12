@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { VoltarInicioComponent } from '../voltar-inicio/voltar-inicio.component';
 import { environmentData } from '../../../environments/environment.data';
-import { Title, Meta } from '@angular/platform-browser';
+import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
   selector: 'app-origem',
@@ -11,8 +11,7 @@ import { Title, Meta } from '@angular/platform-browser';
   standalone: true
 })
 export class OrigemComponent implements OnInit {
-  private readonly titleService: Title = inject(Title);
-  private readonly metaService: Meta = inject(Meta);
+  private readonly seoService: SeoService = inject(SeoService);
   
   fontesDados = environmentData.fontesDadosOrigem;
 
@@ -21,29 +20,13 @@ export class OrigemComponent implements OnInit {
   }
 
   setupSEO(): void {
-    this.titleService.setTitle('Fontes de Dados Oficiais: Origem das Informações | Brasil Transparente');
-
-    this.metaService.updateTag({ name: 'description', content: 'Conheça as fontes oficiais dos dados do Brasil Transparente: SIAFI, SIGPLAN, Portal da Transparência, PLOA 2025 e outros sistemas governamentais oficiais.' });
-
-    this.metaService.updateTag({ property: 'og:title', content: 'Fontes de Dados Oficiais: Origem das Informações' });
-    this.metaService.updateTag({ property: 'og:description', content: 'Conheça as fontes oficiais dos dados do Brasil Transparente: SIAFI, SIGPLAN, Portal da Transparência e outros sistemas governamentais.' });
-    this.metaService.updateTag({ property: 'og:image', content: 'https://brasiltransparente.digital/images/logo.webp' });
-    this.metaService.updateTag({ property: 'og:url', content: 'https://brasiltransparente.digital/origem' });
-    this.metaService.updateTag({ property: 'og:type', content: 'website' });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: 'Fontes de Dados Oficiais: Origem das Informações' });
-    this.metaService.updateTag({ name: 'twitter:description', content: 'Conheça as fontes oficiais dos dados do Brasil Transparente: SIAFI, SIGPLAN, Portal da Transparência.' });
-    this.metaService.updateTag({ name: 'twitter:image', content: 'https://brasiltransparente.digital/images/logo.webp' });
-
-    const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (canonicalLink) {
-      canonicalLink.href = 'https://brasiltransparente.digital/origem';
-    } else {
-      const link: HTMLLinkElement = document.createElement('link');
-      link.rel = 'canonical';
-      link.href = 'https://brasiltransparente.digital/origem';
-      document.head.appendChild(link);
-    }
+    this.seoService.setSeo({
+      title: 'Fontes de Dados Oficiais: Origem das Informações',
+      description: 'Conheça as fontes oficiais dos dados do Brasil Transparente: SIAFI, SIGPLAN, Portal da Transparência, PLOA 2025 e outros sistemas governamentais oficiais.',
+      ogDescription: 'Conheça as fontes oficiais dos dados do Brasil Transparente: SIAFI, SIGPLAN, Portal da Transparência e outros sistemas governamentais.',
+      ogUrl: 'https://brasiltransparente.digital/origem',
+      twitterDescription: 'Conheça as fontes oficiais dos dados do Brasil Transparente: SIAFI, SIGPLAN, Portal da Transparência.',
+      canonicalUrl: 'https://brasiltransparente.digital/origem'
+    });
   }
 }

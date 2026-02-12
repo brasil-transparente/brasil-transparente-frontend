@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from '../../services/seo/seo.service';
 import { DataService } from '../../services/data/data.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { VoltarAnalisesComponent } from '../voltar-analises/voltar-analises.component';
@@ -20,8 +20,7 @@ import { VoltarAnalisesComponent } from '../voltar-analises/voltar-analises.comp
 export class CustoJurosDividaComponent implements OnInit {
   private readonly storageService: StorageService = inject(StorageService);
   private readonly dataService: DataService = inject(DataService);
-  private readonly titleService: Title = inject(Title);
-  private readonly metaService: Meta = inject(Meta);
+  private readonly seoService: SeoService = inject(SeoService);
 
   federalEntityId = '1';
   isLoading = signal(true);
@@ -37,30 +36,15 @@ export class CustoJurosDividaComponent implements OnInit {
   }
 
   setupSEO(): void {
-    this.titleService.setTitle('Custo com Juros da Dívida Pública Federal: Análise Completa 2025 | Brasil Transparente');
-
-    this.metaService.updateTag({ name: 'description', content: 'Entenda o custo dos juros da dívida pública federal em 2025, seu impacto no orçamento da União e como essa despesa afeta prioridades como saúde, educação e investimentos.' });
-
-    this.metaService.updateTag({ property: 'og:title', content: 'Custo com Juros da Dívida Pública Federal: Análise Completa 2025' });
-    this.metaService.updateTag({ property: 'og:description', content: 'Análise do custo com juros da dívida pública federal em 2025 e seu impacto no orçamento da União.' });
-    this.metaService.updateTag({ property: 'og:image', content: 'https://brasiltransparente.digital/images/logo.webp' });
-    this.metaService.updateTag({ property: 'og:url', content: 'https://brasiltransparente.digital/custo-juros-divida' });
-    this.metaService.updateTag({ property: 'og:type', content: 'article' });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: 'Custo com Juros da Dívida Pública Federal: Análise Completa 2025' });
-    this.metaService.updateTag({ name: 'twitter:description', content: 'Análise detalhada do custo com juros da dívida pública federal em 2025 e seu impacto no orçamento.' });
-    this.metaService.updateTag({ name: 'twitter:image', content: 'https://brasiltransparente.digital/images/logo.webp' });
-
-    const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (canonicalLink) {
-      canonicalLink.href = 'https://brasiltransparente.digital/custo-juros-divida';
-    } else {
-      const link: HTMLLinkElement = document.createElement('link');
-      link.rel = 'canonical';
-      link.href = 'https://brasiltransparente.digital/custo-juros-divida';
-      document.head.appendChild(link);
-    }
+    this.seoService.setSeo({
+      title: 'Custo com Juros da Dívida Pública Federal: Análise Completa 2025',
+      description: 'Entenda o custo dos juros da dívida pública federal em 2025, seu impacto no orçamento da União e como essa despesa afeta prioridades como saúde, educação e investimentos.',
+      ogDescription: 'Análise do custo com juros da dívida pública federal em 2025 e seu impacto no orçamento da União.',
+      ogUrl: 'https://brasiltransparente.digital/custo-juros-divida',
+      ogType: 'article',
+      twitterDescription: 'Análise detalhada do custo com juros da dívida pública federal em 2025 e seu impacto no orçamento.',
+      canonicalUrl: 'https://brasiltransparente.digital/custo-juros-divida'
+    });
   }
 
   loadData(): void {

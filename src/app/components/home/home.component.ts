@@ -8,6 +8,7 @@ import {
 import { ApiService } from '../../services/api/api.service';
 import { DataService } from '../../services/data/data.service';
 import { StorageService } from '../../services/storage/storage.service';
+import { SeoService } from '../../services/seo/seo.service';
 import { CommonModule } from '@angular/common';
 import { ToggleBarItemComponent } from '../toggle-bar-item/toggle-bar-item.component';
 import { ReportType } from '../../models/tipos-relatorios.model';
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly apiService: ApiService = inject(ApiService);
   private readonly dataService: DataService = inject(DataService);
   private readonly storageService: StorageService = inject(StorageService);
+  private readonly seoService: SeoService = inject(SeoService);
   private destroy$ = new Subject<void>();
 
   federalEntityId = '1';
@@ -37,12 +39,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   ReportType = ReportType;
 
   ngOnInit(): void {
+    this.setupSEO();
     this.storageService.federalEntityId$
       .pipe(takeUntil(this.destroy$))
       .subscribe(id => {
         this.federalEntityId = id;
         this.loadData();
       });
+  }
+
+  setupSEO(): void {
+    this.seoService.setSeo({
+      title: 'Brasil Transparente: Gastos Públicos Federais 2025',
+      description: 'Brasil Transparente é um projeto open-source que facilita o acesso e a análise dos gastos públicos federais do Brasil.',
+      ogUrl: 'https://brasiltransparente.digital/',
+      canonicalUrl: 'https://brasiltransparente.digital/'
+    });
   }
 
   ngOnDestroy(): void {

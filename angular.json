@@ -70,7 +70,10 @@
                   "with": "src/environments/environment.production.ts"
                 }
               ],
-              "prerender": true
+              "prerender": false,
+              "ssr": {
+                "entry": "src/server.ts"
+              }
             },
             "development": {
               "optimization": false,

@@ -5,7 +5,7 @@ import { ApiService } from '../../services/api/api.service';
 import { DataService } from '../../services/data/data.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Title, Meta } from '@angular/platform-browser';
+import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
   selector: 'app-gastos-seguranca',
@@ -22,8 +22,7 @@ export class GastosSegurancaComponent implements OnInit {
   private readonly apiService: ApiService = inject(ApiService);
   private readonly dataService: DataService = inject(DataService);
   private readonly storageService: StorageService = inject(StorageService);
-  private readonly titleService: Title = inject(Title);
-  private readonly metaService: Meta = inject(Meta);
+  private readonly seoService: SeoService = inject(SeoService);
 
   federalEntityId = '1';
   isLoading = signal(true);
@@ -40,30 +39,15 @@ export class GastosSegurancaComponent implements OnInit {
   }
 
   setupSEO(): void {
-    this.titleService.setTitle('Gastos Federais com Segurança Pública: Análise Completa 2025 | Brasil Transparente');
-
-    this.metaService.updateTag({ name: 'description', content: 'Veja a análise detalhada dos gastos do Brasil com segurança pública em 2025. Entenda o investimento de R$ 45,2 bilhões em programas de segurança e prevenção.' });
-
-    this.metaService.updateTag({ property: 'og:title', content: 'Gastos Federais com Segurança Pública: Análise Completa 2025' });
-    this.metaService.updateTag({ property: 'og:description', content: 'Análise detalhada dos R$ 45,2 bilhões investidos em segurança pública federal em 2025. Programas e impactos na redução da criminalidade.' });
-    this.metaService.updateTag({ property: 'og:image', content: 'https://brasiltransparente.digital/images/logo.webp' });
-    this.metaService.updateTag({ property: 'og:url', content: 'https://brasiltransparente.digital/gastos-seguranca' });
-    this.metaService.updateTag({ property: 'og:type', content: 'article' });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: 'Gastos Federais com Segurança Pública: Análise Completa 2025' });
-    this.metaService.updateTag({ name: 'twitter:description', content: 'Análise detalhada dos R$ 45,2 bilhões investidos em segurança pública federal em 2025.' });
-    this.metaService.updateTag({ name: 'twitter:image', content: 'https://brasiltransparente.digital/images/logo.webp' });
-
-    const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (canonicalLink) {
-      canonicalLink.href = 'https://brasiltransparente.digital/gastos-seguranca';
-    } else {
-      const link: HTMLLinkElement = document.createElement('link');
-      link.rel = 'canonical';
-      link.href = 'https://brasiltransparente.digital/gastos-seguranca';
-      document.head.appendChild(link);
-    }
+    this.seoService.setSeo({
+      title: 'Gastos Federais com Segurança Pública: Análise Completa 2025',
+      description: 'Veja a análise detalhada dos gastos do Brasil com segurança pública em 2025. Entenda o investimento de R$ 45,2 bilhões em programas de segurança e prevenção.',
+      ogDescription: 'Análise detalhada dos R$ 45,2 bilhões investidos em segurança pública federal em 2025. Programas e impactos na redução da criminalidade.',
+      ogUrl: 'https://brasiltransparente.digital/gastos-seguranca',
+      ogType: 'article',
+      twitterDescription: 'Análise detalhada dos R$ 45,2 bilhões investidos em segurança pública federal em 2025.',
+      canonicalUrl: 'https://brasiltransparente.digital/gastos-seguranca'
+    });
   }
 
   loadData(): void {

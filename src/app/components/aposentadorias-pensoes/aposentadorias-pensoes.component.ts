@@ -5,7 +5,7 @@ import { ApiService } from '../../services/api/api.service';
 import { DataService } from '../../services/data/data.service';
 import { StorageService } from '../../services/storage/storage.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Title, Meta } from '@angular/platform-browser';
+import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
   selector: 'app-aposentadorias-pensoes',
@@ -22,8 +22,7 @@ export class AposentadoriasPensoesComponent implements OnInit {
   private readonly apiService: ApiService = inject(ApiService);
   private readonly dataService: DataService = inject(DataService);
   private readonly storageService: StorageService = inject(StorageService);
-  private readonly titleService: Title = inject(Title);
-  private readonly metaService: Meta = inject(Meta);
+  private readonly seoService: SeoService = inject(SeoService);
 
   federalEntityId = '1';
   isLoading = signal(true);
@@ -40,30 +39,17 @@ export class AposentadoriasPensoesComponent implements OnInit {
   }
 
   setupSEO(): void {
-    this.titleService.setTitle('Gastos da União com Aposentadorias e Pensões: Análise Completa 2025 | Brasil Transparente');
-
-    this.metaService.updateTag({ name: 'description', content: 'Veja a análise detalhada dos gastos do Brasil com aposentadorias e pensões em 2025. Entenda o impacto do RGPS, BPC e gastos militares no PIB.' });
-
-    this.metaService.updateTag({ property: 'og:title', content: 'Gastos da União com Aposentadorias e Pensões: Análise Completa 2025' });
-    this.metaService.updateTag({ property: 'og:description', content: 'Análise detalhada dos R$ 1,28 trilhão gastos com aposentadorias e pensões em 2025. Impacto de 43,98% no orçamento federal.' });
-    this.metaService.updateTag({ property: 'og:image', content: 'https://brasiltransparente.digital/images/logo-white-bg.png' });
-    this.metaService.updateTag({ property: 'og:url', content: 'https://brasiltransparente.digital/aposentadorias-pensoes' });
-    this.metaService.updateTag({ property: 'og:type', content: 'article' });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: 'Gastos da União com Aposentadorias e Pensões: Análise Completa 2025' });
-    this.metaService.updateTag({ name: 'twitter:description', content: 'Análise detalhada dos R$ 1,28 trilhão gastos com aposentadorias e pensões em 2025.' });
-    this.metaService.updateTag({ name: 'twitter:image', content: 'https://brasiltransparente.digital/images/logo-white-bg.png' });
-
-    const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (canonicalLink) {
-      canonicalLink.href = 'https://brasiltransparente.digital/aposentadorias-pensoes';
-    } else {
-      const link: HTMLLinkElement = document.createElement('link');
-      link.rel = 'canonical';
-      link.href = 'https://brasiltransparente.digital/aposentadorias-pensoes';
-      document.head.appendChild(link);
-    }
+    this.seoService.setSeo({
+      title: 'Gastos da União com Aposentadorias e Pensões: Análise Completa 2025',
+      description: 'Veja a análise detalhada dos gastos do Brasil com aposentadorias e pensões em 2025. Entenda o impacto do RGPS, BPC e gastos militares no PIB.',
+      ogDescription: 'Análise detalhada dos R$ 1,28 trilhão gastos com aposentadorias e pensões em 2025. Impacto de 43,98% no orçamento federal.',
+      ogImage: 'https://brasiltransparente.digital/images/logo-white-bg.png',
+      ogUrl: 'https://brasiltransparente.digital/aposentadorias-pensoes',
+      ogType: 'article',
+      twitterDescription: 'Análise detalhada dos R$ 1,28 trilhão gastos com aposentadorias e pensões em 2025.',
+      twitterImage: 'https://brasiltransparente.digital/images/logo-white-bg.png',
+      canonicalUrl: 'https://brasiltransparente.digital/aposentadorias-pensoes'
+    });
   }
 
   loadData(): void {
