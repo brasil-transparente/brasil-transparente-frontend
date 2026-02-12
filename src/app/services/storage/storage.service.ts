@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { ReportType } from '../../models/tipos-relatorios.model';
 import { environment } from 'environments/environment.development';
@@ -8,6 +9,7 @@ import { environment } from 'environments/environment.development';
 })
 export class StorageService {
   private static readonly SHOULD_CACHE = environment.shouldCache;
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   private static readonly DEFAULT_FEDERAL_ENTITY_IMAGE =
     'images/estados/uniao.svg';
@@ -32,6 +34,8 @@ export class StorageService {
   }
 
   private loadFromLocalStorage(): void {
+    if (!this.isBrowser) return;
+
     const name = localStorage.getItem('federalEntityName');
     const image = localStorage.getItem('federalEntityImage');
     const id = localStorage.getItem('federalEntityId');
@@ -43,9 +47,11 @@ export class StorageService {
   }
 
   setFederalEntity(name: string, image: string, id: string): void {
-    localStorage.setItem('federalEntityName', name);
-    localStorage.setItem('federalEntityImage', image);
-    localStorage.setItem('federalEntityId', id);
+    if (this.isBrowser) {
+      localStorage.setItem('federalEntityName', name);
+      localStorage.setItem('federalEntityImage', image);
+      localStorage.setItem('federalEntityId', id);
+    }
 
     this.federalEntityNameSubject.next(name);
     this.federalEntityImageSubject.next(image);
@@ -57,7 +63,7 @@ export class StorageService {
   }
 
   getCached<T>(url: string): T | null {
-    if (!StorageService.SHOULD_CACHE) return null;
+    if (!StorageService.SHOULD_CACHE || !this.isBrowser) return null;
 
     const cached = localStorage.getItem(this.cacheKey(url));
     if (!cached) return null;
@@ -76,6 +82,8 @@ export class StorageService {
   }
 
   setCache<T>(url: string, data: T): void {
+    if (!this.isBrowser) return;
+
     localStorage.setItem(
       this.cacheKey(url),
       JSON.stringify({ data, timestamp: Date.now() })

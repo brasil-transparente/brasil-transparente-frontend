@@ -97,7 +97,11 @@
                   "replace": "src/environments/environment.development.ts",
                   "with": "src/environments/environment.testing.ts"
                 }
-              ]
+              ],
+              "prerender": true,
+              "ssr": {
+                "entry": "src/server.ts"
+              }
             }
           }
         },
