@@ -1,34 +1,71 @@
-<footer>
-  <div class="footer-content">
-    <div class="footer-section">
-      <h3>Explorar</h3>
-      <ul class="footer-links">
-        <li><a routerLink="/sobre">Sobre</a></li>
-        <li><a routerLink="/metodologia">Metodologia</a></li>
-        <li><a routerLink="/origem">Origem dos Dados</a></li>
-        <li><a routerLink="/analises">Análises</a></li>
-        <li>
-          <a href="https://github.com/brasil-transparente" target="_blank">Repositório GitHub</a>
-        </li>
-      </ul>
-    </div>
-    <div class="footer-section">
-      <h3>Apoie o projeto!</h3>
-      <ul class="footer-links">
-        <li class="donation-pix-item">
-          <i class="fa-brands fa-pix donation-pix-icon"></i>
-          <span id="pix-key" class="donation-pix-key">{{ pixKey }}</span>
-          <button class="donation-pix-copy-btn" (click)="copyPixKey()">
-            @if(!isCopiadoClicado){ Copiar } @else { Copiado! }
-          </button>
-        </li>
-      </ul>
-      <div class="footer-logo">
-        <img src="/images/logo.webp" alt="Brasil Transparente Logo" class="footer-logo-image" />
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <!-- Coluna 1: Marca e Missão -->
+      <div class="footer-col brand-col">
+        <div class="footer-logo-card">
+          <img src="/images/logo.webp" alt="Brasil Transparente" class="footer-logo" />
+        </div>
+        <p class="brand-mission">
+          Plataforma independente de tecnologia cívica que organiza e torna compreensíveis as despesas públicas federais a partir de dados oficiais da União.
+        </p>
+        <div class="github-badge-wrapper">
+          <a href="https://github.com/brasil-transparente" target="_blank" rel="noopener noreferrer" class="github-btn">
+            <i class="fa-brands fa-github"></i>
+            <span>Repositório de Código Aberto</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Coluna 2: Navegação -->
+      <div class="footer-col nav-col">
+        <h4 class="col-title">Navegação</h4>
+        <ul class="footer-nav-list">
+          <li><a routerLink="/"><i class="fas fa-chevron-right list-arrow"></i> Resumo dos Gastos</a></li>
+          <li><a routerLink="/gastos-detalhados"><i class="fas fa-chevron-right list-arrow"></i> Gastos Detalhados</a></li>
+          <li><a routerLink="/analises"><i class="fas fa-chevron-right list-arrow"></i> Análises Orçamentárias</a></li>
+          <li><a routerLink="/metodologia"><i class="fas fa-chevron-right list-arrow"></i> Metodologia</a></li>
+          <li><a routerLink="/origem"><i class="fas fa-chevron-right list-arrow"></i> Origem dos Dados</a></li>
+          <li><a routerLink="/sobre"><i class="fas fa-chevron-right list-arrow"></i> Sobre o Projeto</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 3: Apoie o Projeto -->
+      <div class="footer-col support-col">
+        <h4 class="col-title">Apoie a Tecnologia Cívica</h4>
+        <p class="support-text">
+          O Brasil Transparente é uma iniciativa comunitária sem fins lucrativos. Sua contribuição mantém os servidores ativos.
+        </p>
+        <div class="pix-card">
+          <div class="pix-header">
+            <i class="fa-brands fa-pix pix-icon"></i>
+            <span class="pix-title">Chave Pix (E-mail)</span>
+          </div>
+          <div class="pix-key-box">
+            <code class="pix-key">{{ pixKey }}</code>
+            <button class="pix-copy-btn" (click)="copyPixKey()" type="button" [attr.aria-label]="isCopiadoClicado ? 'Chave copiada' : 'Copiar chave Pix'">
+              @if(!isCopiadoClicado){
+                <i class="fas fa-copy"></i> Copiar
+              } @else {
+                <i class="fas fa-check"></i> Copiado!
+              }
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <p>Transparência se constrói com dados ao alcance de todos | Contato: {{ contactEmail }}</p>
+
+    <!-- Linha Inferior -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p class="bottom-copy">
+          © 2026 Brasil Transparente • Licenciado sob <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL v3.0</a>
+        </p>
+        <div class="bottom-contact">
+          <i class="fas fa-envelope"></i>
+          <span>Contato: <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a></span>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>

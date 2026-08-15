@@ -1,33 +1,57 @@
-<div class="bar-container">
-  <span
-    class="bar-label"
-    [class.bar-label-final]="isLastLevel()"
-    [style.cursor]="isLastLevel() ? 'default' : 'pointer'"
-    (click)="onToggle()"
-    tabindex="0"
-    (keypress.space)="onToggle()"
-    [innerHTML]="
-      isLastLevel()
-        ? name()
-        : name() + ' <i class=\'fas fa-' + (isBarExpanded() ? 'minus' : 'plus') + '\'></i>'
-    "
-  ></span>
+<div class="bar-card" [class.is-expanded]="isBarExpanded()" [attr.data-level]="level()">
   <div
-    class="bar"
-    [style.width.%]="percentageOfTotal()"
-    [style.backgroundColor]="barColor()"
-    (mouseenter)="showRawTotal.set(true)"
-    (mouseleave)="showRawTotal.set(false)"
+    class="bar-header"
+    [class.is-clickable]="!isLastLevel()"
+    (click)="onToggle()"
+    (keydown.enter)="onToggle()"
+    (keydown.space)="onToggle(); $event.preventDefault()"
+    [attr.tabindex]="isLastLevel() ? -1 : 0"
+    [attr.role]="isLastLevel() ? null : 'button'"
+    [attr.aria-expanded]="isLastLevel() ? null : isBarExpanded()"
+    [attr.aria-label]="name() + ': ' + formatLargeCurrency(totalValueSpent()) + ' (' + (percentageOfTotal() | number : '1.2-2') + '%)'"
   >
-    {{
-      showRawTotal() ? formatCurrency(totalValueSpent()) : formatLargeCurrency(totalValueSpent())
-    }}
-    ({{ percentageOfTotal() | number : '1.2-2' }}%)
+    <div class="header-left">
+      @if (!isLastLevel()) {
+        <button class="expand-btn" type="button" tabindex="-1" [attr.aria-label]="isBarExpanded() ? 'Recolher' : 'Expandir'">
+          <i class="fas" [class.fa-minus]="isBarExpanded()" [class.fa-plus]="!isBarExpanded()"></i>
+        </button>
+      }
+      <span class="category-name">{{ name() }}</span>
+    </div>
+
+    <div class="header-right">
+      <div
+        class="value-chip"
+        role="button"
+        tabindex="0"
+        (mouseenter)="showRawTotal.set(true)"
+        (mouseleave)="showRawTotal.set(false)"
+        (click)="$event.stopPropagation(); showRawTotal.set(!showRawTotal())"
+        (keydown.enter)="$event.stopPropagation(); showRawTotal.set(!showRawTotal())"
+        (keydown.space)="$event.stopPropagation(); showRawTotal.set(!showRawTotal()); $event.preventDefault()"
+        title="Alternar entre valor formatado e valor exato"
+      >
+        <span class="value-amount">
+          {{ showRawTotal() ? formatCurrency(totalValueSpent()) : formatLargeCurrency(totalValueSpent()) }}
+        </span>
+        <span class="percentage-badge">
+          {{ percentageOfTotal() | number : '1.2-2' }}%
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-track">
+    <div
+      class="progress-fill"
+      [style.width.%]="percentageOfTotal() < 0.6 && percentageOfTotal() > 0 ? 0.85 : percentageOfTotal()"
+      [style.backgroundColor]="barColor()"
+    ></div>
   </div>
 
   @if(isBarExpanded() && !isLastLevel()) {
-  <div class="children-container">
-    <ng-content></ng-content>
-  </div>
+    <div class="children-container">
+      <ng-content></ng-content>
+    </div>
   }
 </div>
