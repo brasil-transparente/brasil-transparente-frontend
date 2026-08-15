@@ -5,23 +5,23 @@
       <span class="brand-context">Dados públicos federais, em linguagem acessível</span>
     </a>
 
-    @if(router.url === '/' || router.url === '/gastos-detalhados'){
-    <nav class="report-nav" aria-label="Navegação dos relatórios">
-      <a
-        routerLink="/"
-        class="report-button report-button-text-center"
-        [class.active]="router.url === '/'"
-      >
-        Resumo dos Gastos
-      </a>
-      <a
-        routerLink="/gastos-detalhados"
-        class="report-button report-button-text-center"
-        [class.active]="router.url === '/gastos-detalhados'"
-      >
-        Gastos Detalhados
-      </a>
-    </nav>
+    @if (router.url === '/' || router.url === '/gastos-detalhados') {
+      <nav class="report-nav" aria-label="Navegação dos relatórios">
+        <a
+          routerLink="/"
+          class="report-button report-button-text-center"
+          [class.active]="router.url === '/'"
+        >
+          Resumo dos Gastos
+        </a>
+        <a
+          routerLink="/gastos-detalhados"
+          class="report-button report-button-text-center"
+          [class.active]="router.url === '/gastos-detalhados'"
+        >
+          Gastos Detalhados
+        </a>
+      </nav>
     }
   </div>
 </header>

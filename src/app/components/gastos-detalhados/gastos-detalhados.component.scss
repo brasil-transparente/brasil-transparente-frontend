@@ -10,7 +10,16 @@
   min-height: 100px;
 }
 
-.total-display::before { content: ''; position: absolute; width: 14rem; height: 14rem; border: 1px solid rgba(255, 223, 0, 0.35); border-radius: 50%; right: -6rem; top: -9rem; }
+.total-display::before {
+  content: '';
+  position: absolute;
+  width: 14rem;
+  height: 14rem;
+  border: 1px solid rgba(255, 223, 0, 0.35);
+  border-radius: 50%;
+  right: -6rem;
+  top: -9rem;
+}
 
 .total-display h2 {
   font-size: 1.25rem;

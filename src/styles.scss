@@ -19,10 +19,10 @@
   --home-hero-gradient-3: #f5f8fd;
   --link: var(--azul-brasil);
   --link-hover: var(--brand-blue-600);
---chart-1: #eed200; /* slightly lighter than before */
---chart-2: #f4d900;
---chart-3: #ffdf00; /* reference */
---chart-4: #ffe24d; /* unchanged */
+  --chart-1: #eed200; /* slightly lighter than before */
+  --chart-2: #f4d900;
+  --chart-3: #ffdf00; /* reference */
+  --chart-4: #ffe24d; /* unchanged */
   --chart-5: #ced0d3;
   --chart-muted: #9ca3af;
   --card-shadow: 0 10px 28px rgba(0, 39, 118, 0.07);
@@ -30,7 +30,11 @@
 }
 
 * {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 body {

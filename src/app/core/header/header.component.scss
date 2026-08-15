@@ -1,13 +1,49 @@
-header { background: var(--surface); padding: 1.25rem 2rem 0; border-top: 5px solid var(--azul-brasil); border-bottom: 1px solid var(--border-subtle); }
+header {
+  background: var(--surface);
+  padding: 1.25rem 2rem 0;
+  border-top: 5px solid var(--azul-brasil);
+  border-bottom: 1px solid var(--border-subtle);
+}
 
-.header-image { display: block; width: auto; max-width: 100%; max-height: 78px; }
+.header-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 78px;
+}
 
-.header-content { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 0; width: 100%; max-width: 1160px; margin: 0 auto; }
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0;
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+}
 
-.brand { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; text-decoration: none; }
-.brand-context { color: var(--text-muted); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  text-decoration: none;
+}
+.brand-context {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
-.report-nav { display: flex; align-self: stretch; gap: 0.25rem; justify-content: flex-end; }
+.report-nav {
+  display: flex;
+  align-self: stretch;
+  gap: 0.25rem;
+  justify-content: flex-end;
+}
 
 .report-button {
   padding: 0.75rem 1rem 0.85rem;
@@ -18,7 +54,10 @@ header { background: var(--surface); padding: 1.25rem 2rem 0; border-top: 5px so
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   cursor: pointer;
-  transition: color var(--transition), border-color var(--transition), background var(--transition);
+  transition:
+    color var(--transition),
+    border-color var(--transition),
+    background var(--transition);
   align-items: center;
   width: auto;
   height: auto;

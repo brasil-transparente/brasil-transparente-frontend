@@ -63,7 +63,9 @@
   overflow: hidden;
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .bar-container:hover {
@@ -80,7 +82,6 @@
   background: var(--amarelo-ouro);
   opacity: 1;
 }
-
 
 /* Nível 1 (Poder) */
 .bar-container > .bar {
