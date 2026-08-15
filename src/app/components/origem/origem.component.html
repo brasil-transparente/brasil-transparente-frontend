@@ -1,5 +1,8 @@
-<section class="content-container">
-  <app-voltar-inicio />
+<div class="content-container">
+  <div class="page-top-actions">
+    <app-voltar-inicio />
+  </div>
+
   <main class="text-heavy">
     <h1>Origem dos Dados</h1>
 
@@ -13,30 +16,32 @@
     </p>
 
     @for(secao of fontesDados; track secao.id) {
-    <h2>{{ secao.titulo }}</h2>
+      <h2>{{ secao.titulo }}</h2>
 
-    <ul>
-      @for(fonte of secao.fontes; track fonte.nome) {
-      <li>
-        Dados {{ fonte.preposicao }} <a [href]="fonte.url" target="_blank">{{ fonte.nome }}</a
-        >.
-      </li>
-      }
-    </ul>
+      <ul>
+        @for(fonte of secao.fontes; track fonte.nome) {
+          <li>
+            Dados {{ fonte.preposicao }} <a [href]="fonte.url" target="_blank" rel="noopener noreferrer">{{ fonte.nome }}</a>.
+          </li>
+        }
+      </ul>
 
-    @if(secao.descricao) {
-    <p>
-      {{ secao.descricao }}
-      @if(secao.portalUrl && secao.portalNome) {
-      <a [href]="secao.portalUrl" target="_blank">{{ secao.portalNome }}</a
-      >. }
-    </p>
-    } @if(secao.outrasEntidades && secao.outrasEntidades.length > 0) {
-    <ul>
-      @for(entidade of secao.outrasEntidades; track entidade.nome) {
-      <li>{{ entidade.nome }}</li>
+      @if(secao.descricao) {
+        <p>
+          {{ secao.descricao }}
+          @if(secao.portalUrl && secao.portalNome) {
+            <a [href]="secao.portalUrl" target="_blank" rel="noopener noreferrer">{{ secao.portalNome }}</a>.
+          }
+        </p>
       }
-    </ul>
-    } }
+
+      @if(secao.outrasEntidades && secao.outrasEntidades.length > 0) {
+        <ul>
+          @for(entidade of secao.outrasEntidades; track entidade.nome) {
+            <li>{{ entidade.nome }}</li>
+          }
+        </ul>
+      }
+    }
   </main>
-</section>
+</div>

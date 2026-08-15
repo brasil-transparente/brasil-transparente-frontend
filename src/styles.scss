@@ -1,132 +1,198 @@
 :root {
-  --background: #eef2f7;
-  --surface: #ffffff;
-  --surface-muted: #f8fafc;
-  --text-primary: #111827;
-  --text-muted: #6b7280;
-  --border-subtle: rgba(17, 24, 39, 0.08);
+  /* Brand Palette (Brasil Transparente Official) */
   --azul-brasil: #002776;
+  --azul-brasil-dark: #001a4e;
+  --azul-brasil-light: #003aae;
+  --azul-brasil-subtle: #ebf2ff;
+  
   --amarelo-ouro: #ffdf00;
+  --amarelo-ouro-dark: #d97706;
+  --amarelo-ouro-light: #fef08a;
+  --amarelo-ouro-subtle: #fffbeb;
+  
   --verde-escuro: #075213;
-  --brand-blue-800: #001c57;
-  --brand-blue-600: #003399;
-  --brand-gold-600: #ffbf00;
-  --brand-green-700: #065c17;
-  --home-hero-base: #e7eef7;
-  --home-hero-gradient-1: #d6e2f3;
-  --home-hero-gradient-2: #e7eef7;
-  --home-hero-gradient-3: #f5f8fd;
+  --verde-escuro-light: #15803d;
+  --verde-subtle: #f0fdf4;
+
+  /* Neutrals & Surfaces */
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --surface-hover: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-subtle: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-strong: #94a3b8;
+
+  /* Links */
   --link: var(--azul-brasil);
-  --link-hover: var(--brand-blue-600);
---chart-1: #eed200; /* slightly lighter than before */
---chart-2: #f4d900;
---chart-3: #ffdf00; /* reference */
---chart-4: #ffe24d; /* unchanged */
-  --chart-5: #ced0d3;
-  --chart-muted: #9ca3af;
-  --card-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --link-hover: var(--azul-brasil-light);
+
+  /* Data Visualization Hierarchy (Yellow for all bars as requested) */
+  --chart-0: #ffdf00;
+  --chart-1: #ffdf00;
+  --chart-2: #ffdf00;
+  --chart-3: #ffdf00;
+  --chart-4: #ffdf00;
+  --chart-muted: #94a3b8;
+
+  /* Premium Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 39, 118, 0.06), 0 1px 2px -1px rgba(0, 39, 118, 0.04);
+  --shadow-md: 0 4px 12px -1px rgba(0, 39, 118, 0.08), 0 2px 6px -2px rgba(0, 39, 118, 0.05);
+  --shadow-lg: 0 12px 28px -4px rgba(0, 39, 118, 0.1), 0 8px 10px -6px rgba(0, 39, 118, 0.06);
+  --shadow-xl: 0 20px 35px -5px rgba(0, 39, 118, 0.14), 0 8px 10px -6px rgba(0, 39, 118, 0.08);
+  --card-shadow: var(--shadow-md);
+
+  /* Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   margin: 0;
   color: var(--text-primary);
-  background: radial-gradient(900px 420px at 50% -120px, rgba(0, 39, 118, 0.08) 0%, rgba(0, 39, 118, 0) 60%),
-    radial-gradient(900px 420px at 90% 10%, rgba(7, 82, 19, 0.10) 0%, rgba(7, 82, 19, 0) 58%),
-    radial-gradient(900px 420px at 10% 10%, rgba(255, 223, 0, 0.10) 0%, rgba(255, 223, 0, 0) 55%),
-    var(--background);
-  line-height: 1.5;
+  background-color: var(--background);
+  line-height: 1.6;
   overflow-x: hidden;
   width: 100%;
 }
 
-// Shadow para os cards que são expandíveis. Está aqui pois é de uso geral.
+main {
+  min-height: 0;
+  padding: 0.75rem 1.5rem 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+/* Institutional Container */
 .content-container {
-  max-width: 800px;
-  margin: 1.5em auto;
-  padding: 2rem;
+  max-width: 960px;
+  margin: 1rem auto;
+  padding: 2rem 2.5rem;
   background: var(--surface);
-  border-radius: 0.75rem;
-  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 a {
   color: var(--link);
+  text-decoration: none;
+  transition: color var(--transition);
 }
 
 a:hover {
   color: var(--link-hover);
 }
 
-main {
-  min-height: 600px;
-  padding: 1rem;
-  max-width: 1350px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.text-heavy p {
-  text-indent: 2em;
-  text-align: justify;
-}
-
-.text-heavy p,
-.text-heavy ul,
-.text-heavy ul li {
-  text-align: justify;
+h1, h2, h3, h4, h5, h6 {
+  color: var(--azul-brasil);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 0;
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: clamp(1.6rem, 2.75vw, 2.25rem);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.35;
+  margin-top: 1.75rem;
+  margin-bottom: 0.65rem;
+}
+
+/* Text heavy & Institutional Article formatting */
+.text-heavy {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.text-heavy p {
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+
+.text-heavy ul,
+.text-heavy ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.text-heavy li {
+  margin-bottom: 0.5rem;
+}
+
+.text-heavy strong {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .text-heavy a {
-  color: var(--link);
+  color: var(--azul-brasil);
   text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
 }
 
 .text-heavy a:hover {
-  color: var(--link-hover);
-  text-decoration: none;
+  color: var(--azul-brasil-light);
 }
 
-/* Content loading animations */
+/* Institutional Badge */
+.civic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  background: var(--azul-brasil-subtle);
+  color: var(--azul-brasil);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(0, 39, 118, 0.12);
+}
+
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Page Content Animations */
-.text-heavy {
-  opacity: 0;
-  animation: fadeInContent 0.5s ease-out forwards;
-}
-
-@keyframes fadeInContent {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -137,7 +203,7 @@ h1 {
 @keyframes fadeInScale {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.97);
   }
   to {
     opacity: 1;
@@ -145,61 +211,38 @@ h1 {
   }
 }
 
-/* Nível 1 (Poder) */
-.fas {
-  margin-left: 6px;
-}
-
-@media (max-width: 480px) {
-  .report-button {
-    width: 100%;
-    padding: 0.85rem;
-    font-size: 0.8rem;
-  }
-}
-
-/* Tablet */
+/* Responsive adjustments */
 @media (max-width: 920px) {
   .content-container {
-    margin: 1.75em 0.5em;
+    margin: 1rem auto;
+    padding: 1.75rem 1.5rem;
+    border-radius: var(--radius-md);
   }
 }
 
-/* Mobile Phone */
 @media (max-width: 550px) {
-  h1 {
-    font-size: 1.1rem;
+  main {
+    padding: 0.65rem 0.85rem 1.25rem;
   }
 
   .content-container {
-    margin: 1.75em 0.5em;
-    padding: 1rem;
+    margin: 0.75rem 0.25rem;
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-sm);
   }
 
-  main {
-    padding: 0.5rem;
-  }
-}
-
-main {
-  position: relative;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+  .text-heavy {
+    font-size: 0.975rem;
   }
 }
 
+/* Font Faces */
 @font-face {
   font-display: swap;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  src: url('../public/fonts/inter/inter-v19-latin-regular.woff2');
+  src: url('../public/fonts/inter/inter-v19-latin-regular.woff2') format('woff2');
 }
 @font-face {
   font-display: swap;
@@ -213,7 +256,7 @@ main {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  src: url('../public/fonts/inter/inter-v19-latin-600.woff2') format('woff');
+  src: url('../public/fonts/inter/inter-v19-latin-600.woff2') format('woff2');
 }
 @font-face {
   font-display: swap;

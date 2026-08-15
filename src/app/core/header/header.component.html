@@ -1,26 +1,60 @@
-<header [class.home-hero]="router.url === '/' || router.url === '/gastos-detalhados'">
-  <div class="header-content">
-    <a routerLink="/">
-      <img src="/images/logo.webp" alt="BT Logo" class="header-image" />
-    </a>
+<header class="site-header">
+  <div class="top-accent-bar"></div>
+  <div class="header-container">
+    <div class="header-main-row">
+      <a routerLink="/" class="brand" aria-label="Brasil Transparente — página inicial">
+        <img src="/images/logo.webp" alt="Brasil Transparente" class="header-logo" />
+        <span class="brand-divider" aria-hidden="true">|</span>
+        <div class="brand-text">
+          <span class="brand-context">PORTAL CÍVICO DE DADOS ABERTOS</span>
+        </div>
+      </a>
 
-    @if(router.url === '/' || router.url === '/gastos-detalhados'){
-    <nav class="report-nav">
-      <a
-        routerLink="/"
-        class="report-button report-button-text-center"
-        [class.active]="router.url === '/'"
-      >
-        Resumo dos Gastos
-      </a>
-      <a
-        routerLink="/gastos-detalhados"
-        class="report-button report-button-text-center"
-        [class.active]="router.url === '/gastos-detalhados'"
-      >
-        Gastos Detalhados
-      </a>
-    </nav>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a routerLink="/analises" class="nav-link" routerLinkActive="active">
+          <i class="fas fa-chart-pie nav-icon"></i>
+          <span>Análises</span>
+        </a>
+        <a routerLink="/metodologia" class="nav-link" routerLinkActive="active">
+          <i class="fas fa-book-open nav-icon"></i>
+          <span>Metodologia</span>
+        </a>
+        <a routerLink="/origem" class="nav-link" routerLinkActive="active">
+          <i class="fas fa-database nav-icon"></i>
+          <span>Origem</span>
+        </a>
+        <a routerLink="/sobre" class="nav-link" routerLinkActive="active">
+          <i class="fas fa-info-circle nav-icon"></i>
+          <span>Sobre</span>
+        </a>
+      </nav>
+    </div>
+
+    @if (router.url === '/' || router.url === '/gastos-detalhados') {
+      <div class="report-switcher-wrapper">
+        <div class="report-switcher" role="tablist" aria-label="Visualização do relatório">
+          <a
+            routerLink="/"
+            class="report-tab"
+            [class.active]="router.url === '/'"
+            role="tab"
+            [attr.aria-selected]="router.url === '/'"
+          >
+            <i class="fas fa-layer-group tab-icon"></i>
+            <span>Resumo dos Gastos</span>
+          </a>
+          <a
+            routerLink="/gastos-detalhados"
+            class="report-tab"
+            [class.active]="router.url === '/gastos-detalhados'"
+            role="tab"
+            [attr.aria-selected]="router.url === '/gastos-detalhados'"
+          >
+            <i class="fas fa-sitemap tab-icon"></i>
+            <span>Gastos Detalhados</span>
+          </a>
+        </div>
+      </div>
     }
   </div>
 </header>

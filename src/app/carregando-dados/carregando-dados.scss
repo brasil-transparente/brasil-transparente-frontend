@@ -4,31 +4,33 @@
   align-items: start;
   justify-content: flex-start;
   min-height: 400px;
-  gap: 1.5rem;
-  padding-top: 2rem;
+  gap: 1rem;
+  padding-top: 1rem;
+  width: 100%;
 }
 
 .skeleton-total {
   width: 100%;
   height: 9rem;
-  border-radius: 0.75rem;
-  background: linear-gradient(90deg, #e8edf5 25%, #f7f9fc 50%, #e8edf5 75%);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
   background-size: 200% 100%;
-  animation: skeleton-loading 1.2s infinite linear;
-  margin-bottom: 1rem;
+  animation: skeleton-loading 1.5s infinite linear;
+  margin-bottom: 1.5rem;
 }
 
 .skeleton-bar {
   width: 100%;
-  height: 5rem;
-  border-radius: 0.5rem;
-  background: linear-gradient(90deg, #e8edf5 25%, #f7f9fc 50%, #e8edf5 75%);
+  height: 4.5rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, #edf2f7 25%, #f8fafc 50%, #edf2f7 75%);
   background-size: 200% 100%;
-  animation: skeleton-loading 1.2s infinite linear;
+  animation: skeleton-loading 1.5s infinite linear;
   margin-bottom: 0.5rem;
+  border: 1px solid var(--border-subtle);
+
   &.short {
-    width: 50%;
-    height: 5rem;
+    width: 60%;
   }
 }
 

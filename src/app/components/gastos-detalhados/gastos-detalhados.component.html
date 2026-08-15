@@ -1,28 +1,57 @@
 <main>
   @if(isLoading()){
-  <app-carregando-dados
-    [skeletonCount]="poderes.length"
-    [activeReport]="ReportType.Completo"
-  />
+    <app-carregando-dados
+      [skeletonCount]="poderes.length"
+      [activeReport]="ReportType.Completo"
+    />
   } @else {
-  <div class="total-display">
-    <h2>Valor total gasto em 2025:</h2>
-    <div
-      (mouseenter)="showRawTotal.set(true)"
-      (mouseleave)="showRawTotal.set(false)"
-      class="total-value"
-    >
-      {{ showRawTotal() ? formatCurrency(totalValue) : formatLargeCurrency(totalValue) }}
-    </div>
-  </div>
+    <section class="total-display" aria-label="Resumo do total gasto">
+      <div class="total-card-header">
+        <span class="live-indicator">UNIÃO FEDERAL • EXERCÍCIO 2025</span>
+      </div>
 
-  <div class="simplified-report">
-    <div class="simplified-bars">
-      @for(poder of poderes; track poder.id) {
-      <ng-container *ngTemplateOutlet="recursiveBar; context: { $implicit: poder }"></ng-container>
-      }
-    </div>
-  </div>
+      <h2 class="total-title">Total gasto pelo Governo Federal em 2025</h2>
+
+      <div
+        (mouseenter)="showRawTotal.set(true)"
+        (mouseleave)="showRawTotal.set(false)"
+        (click)="showRawTotal.set(!showRawTotal())"
+        (keydown.enter)="showRawTotal.set(!showRawTotal())"
+        (keydown.space)="showRawTotal.set(!showRawTotal()); $event.preventDefault()"
+        class="total-value-wrapper"
+        tabindex="0"
+        role="button"
+        aria-label="Alternar exibição exata do valor gasto"
+      >
+        <div class="total-value">
+          {{ showRawTotal() ? formatCurrency(totalValue) : formatLargeCurrency(totalValue) }}
+        </div>
+        <span class="total-hint">
+          <i class="fas fa-info-circle"></i>
+          {{ showRawTotal() ? 'Clique para ver em formato simplificado' : 'Passe o cursor ou clique para ver o valor exato em reais' }}
+        </span>
+      </div>
+    </section>
+
+    <section class="report-section" aria-label="Hierarquia das despesas públicas">
+      <div class="section-heading">
+        <h3 class="section-title">
+          <i class="fas fa-sitemap"></i>
+          Estrutura Orçamentária por Poderes e Órgãos
+        </h3>
+        <span class="section-subtitle">
+          Clique nas categorias com <strong>+</strong> para expandir e navegar até o nível de elementos de despesa
+        </span>
+      </div>
+
+      <div class="detailed-report">
+        <div class="detailed-bars">
+          @for(poder of poderes; track poder.id) {
+            <ng-container *ngTemplateOutlet="recursiveBar; context: { $implicit: poder }"></ng-container>
+          }
+        </div>
+      </div>
+    </section>
   }
 </main>
 
@@ -37,8 +66,10 @@
     [isBarExpanded]="item.expanded"
     (toggle)="onTogglePoder(item)"
   >
-    @if(item.expanded && item.children) { @for(child of item.children; track child.id) {
-    <ng-container *ngTemplateOutlet="recursiveBar; context: { $implicit: child }"></ng-container>
-    } }
+    @if(item.expanded && item.children) {
+      @for(child of item.children; track child.id) {
+        <ng-container *ngTemplateOutlet="recursiveBar; context: { $implicit: child }"></ng-container>
+      }
+    }
   </app-toggle-bar-item>
 </ng-template>
