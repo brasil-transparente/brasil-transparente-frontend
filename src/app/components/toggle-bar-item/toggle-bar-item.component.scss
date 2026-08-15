@@ -7,7 +7,6 @@
   box-shadow: var(--shadow-xs);
   transition: all var(--transition);
   position: relative;
-  overflow: hidden;
 
   &::before {
     content: '';
@@ -17,6 +16,8 @@
     bottom: 0;
     width: 4px;
     background: var(--azul-brasil);
+    border-top-left-radius: var(--radius-md);
+    border-bottom-left-radius: var(--radius-md);
     opacity: 0.9;
     transition: opacity var(--transition);
   }
@@ -36,6 +37,32 @@
     box-shadow: var(--shadow-sm);
 
     &::before {
+      background: var(--azul-brasil);
+    }
+  }
+}
+
+/* Sub-levels (Level 1, 2, 3, 4) - Uniform, well-proportioned nested cards */
+.bar-card:not([data-level='0']) {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  box-shadow: none;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.4rem;
+
+  &::before {
+    width: 2px;
+    opacity: 0.6;
+  }
+
+  &:hover {
+    background: #fafcff;
+    border-color: rgba(0, 39, 118, 0.2);
+    box-shadow: var(--shadow-xs);
+
+    &::before {
+      opacity: 1;
       background: var(--azul-brasil);
     }
   }
@@ -146,20 +173,20 @@
   font-weight: 700;
   background: var(--azul-brasil);
   color: #ffffff;
-  padding: 0.12rem 0.4rem;
+  padding: 0.12rem 0.45rem;
   border-radius: var(--radius-sm);
   white-space: nowrap;
 }
 
-/* Modern Progress Bar Track */
+/* Modern Progress Bar Track - Uniform 8px height across all levels */
 .progress-track {
-  height: 9px;
+  height: 8px;
   width: 100%;
   background: #e2e8f0;
   border-radius: var(--radius-full);
   overflow: hidden;
   position: relative;
-  border: 1px solid rgba(0, 39, 118, 0.08);
+  border: 1px solid rgba(0, 39, 118, 0.06);
 }
 
 .progress-fill {
@@ -169,28 +196,32 @@
   background-image: linear-gradient(90deg, #ffdf00 0%, #ffc800 100%);
   transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   min-width: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Expanded Children Container */
+/* Children Container - Single continuous clean guide tree line with consistent spacing */
 .children-container {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.4rem;
   margin-top: 0.75rem;
-  padding-top: 0.75rem;
+  padding-top: 0.65rem;
   border-top: 1px solid var(--border-subtle);
-  margin-left: 0.6rem;
-  padding-left: 0.6rem;
-  border-left: 2px dashed var(--border-medium);
-  animation: fadeIn 0.25s ease-out;
+  margin-left: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(0, 39, 118, 0.15);
+  animation: fadeIn 0.2s ease-out;
 }
 
 /* Mobile adjustments */
 @media (max-width: 600px) {
   .bar-card {
     padding: 0.75rem 0.9rem;
+  }
+
+  .bar-card:not([data-level='0']) {
+    padding: 0.65rem 0.75rem;
   }
 
   .bar-header {
@@ -217,12 +248,8 @@
     font-size: 0.875rem;
   }
 
-  .value-amount {
-    font-size: 0.8rem;
-  }
-
   .children-container {
-    margin-left: 0.2rem;
-    padding-left: 0.4rem;
+    margin-left: 0.25rem;
+    padding-left: 0.5rem;
   }
 }
