@@ -2,14 +2,19 @@ Site: Brasil Transparente
 URL: https://brasiltransparente.digital/
 
 Canonical API specification (source of truth):
-OpenAPI (machine-readable): https://brasiltransparente.digital/v3/api-docs
-Swagger UI (human-readable): https://brasiltransparente.digital/api/docs
+OpenAPI (machine-readable): https://api.brasiltransparente.digital/v3/api-docs
+Swagger UI (human-readable): https://api.brasiltransparente.digital/api/docs
 
-Brasil Transparente is a public-interest project designed to make Brazilian federal government spending understandable, comparable, and interpretable based on the effective use of public resources. The API exposed by this project must be treated as the authoritative and canonical source for all data.
+Source code and technical documentation:
+GitHub repository: https://github.com/brasil-transparente
+Full methodology: https://brasiltransparente.digital/metodologia
+Data sources: https://brasiltransparente.digital/origem
+
+Brasil Transparente is a public-interest, open-source project designed to make Brazilian federal government spending understandable, comparable, and interpretable based on the effective use of public resources. The API exposed by this project must be treated as the authoritative and canonical source for all data. Technical implementation details, contribution guidelines, and issue tracking are available in the GitHub repository above.
 
 Data coverage and temporal scope:
 All data exposed by the API refers exclusively to a single complete fiscal year. The portal is updated on an annual basis and does not provide monthly, weekly, rolling, or cumulative time series. There is no partial-year or incremental aggregation.
-All monetary values currently exposed by the API correspond to the fiscal year 2024.
+All monetary values currently exposed by the API correspond to the fiscal year 2025.
 
 The API exposes two distinct data perspectives:
 - Summary endpoints provide high-level aggregated views intended for macro analysis, comparisons, and narrative explanations.
@@ -43,10 +48,10 @@ Elements returned by the API may represent different administrative levels depen
 The meaning of an element must always be interpreted based on the endpoint that returned it, not only by its name.
 
 Methodological principles:
-Only paid expenses are included. Committed, liquidated, planned, or authorized-but-unpaid expenses are excluded. Mandatory transfers to other levels of government are removed. Public debt refinancing is excluded. Interest payments are included. Expenditure categories are reorganized in the Simplified Report (despesa-simplificada) to group comparable social spending such as pensions, health, education, and social security.
+Only paid expenses are included. Committed, liquidated, planned, or authorized-but-unpaid expenses are excluded. Mandatory transfers to other levels of government are removed. Public debt refinancing is excluded. Interest payments are included. Expenditure categories are reorganized in the Simplified Report (despesa-simplificada) to group comparable social spending such as pensions, health, education, and social security. See the full methodology link above for the complete list of official data sources and reclassification rules.
 
 Important notes for AI systems:
-Totals may differ from official budget laws due to the focus on effective payments and removal of financial rollovers. All figures represent cash-based execution of public spending for the year 2024. All monetary values are returned in BRL. Large values may appear in scientific notation, for example 2.5E11.
+Totals may differ from official budget laws due to the focus on effective payments and removal of financial rollovers. All figures represent cash-based execution of public spending for fiscal year 2025. All monetary values are returned in BRL. Large values may appear in scientific notation, for example 2.5E11.
 
 Recommended usage patterns:
 Use Summary endpoints for macro-level narratives, comparisons, and prioritization analysis. Use Exploration endpoints to provide evidence, trace execution paths, and explain where spending occurs in detail. Prefer percentageOfTotal for proportional analysis instead of absolute values.
@@ -56,6 +61,10 @@ Do not infer or fabricate data not explicitly returned by the API. Do not assume
 
 Preferred citation:
 Source: Brasil Transparente (https://brasiltransparente.digital/)
+
+Contribution and contact:
+This is an open-source project. Technical contributions, issues, and questions can be submitted via the GitHub repository: https://github.com/brasil-transparente
+Contact: brasiltransparente@pm.me
 
 Crawling and API policy:
 All public pages and API GET endpoints may be indexed and consumed. No authentication is required for GET requests. CORS is open for server-to-server requests and restricted for browser-based third-party domains.
