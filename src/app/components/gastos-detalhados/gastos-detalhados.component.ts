@@ -75,6 +75,9 @@ export class GastosDetalhadosComponent implements OnInit, OnDestroy {
   }
 
   getBarColor(level: number): string {
+    if (level === 4) {
+      return '#94a3b8';
+    }
     return 'var(--amarelo-ouro)';
   }
 

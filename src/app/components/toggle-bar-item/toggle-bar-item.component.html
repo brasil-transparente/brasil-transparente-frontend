@@ -1,4 +1,9 @@
-<div class="bar-card" [class.is-expanded]="isBarExpanded()" [attr.data-level]="level()">
+<div
+  class="bar-card"
+  [class.is-expanded]="isBarExpanded()"
+  [class.is-leaf]="isLastLevel() && level() > 0"
+  [attr.data-level]="level()"
+>
   <div
     class="bar-header"
     [class.is-clickable]="!isLastLevel()"
