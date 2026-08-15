@@ -1,11 +1,12 @@
 <header [class.home-hero]="router.url === '/' || router.url === '/gastos-detalhados'">
   <div class="header-content">
-    <a routerLink="/">
-      <img src="/images/logo.webp" alt="BT Logo" class="header-image" />
+    <a routerLink="/" class="brand" aria-label="Brasil Transparente — página inicial">
+      <img src="/images/logo.webp" alt="Brasil Transparente" class="header-image" />
+      <span class="brand-context">Dados públicos federais, em linguagem acessível</span>
     </a>
 
     @if(router.url === '/' || router.url === '/gastos-detalhados'){
-    <nav class="report-nav">
+    <nav class="report-nav" aria-label="Navegação dos relatórios">
       <a
         routerLink="/"
         class="report-button report-button-text-center"

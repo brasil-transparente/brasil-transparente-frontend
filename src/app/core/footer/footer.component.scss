@@ -1,9 +1,9 @@
 /* Nível 1 (Poder) */
 
 footer {
-  background: linear-gradient(135deg, var(--home-hero-gradient-1), var(--home-hero-gradient-3));
-  padding: 2em 1em;
-  color: var(--text-primary);
+  background: var(--azul-brasil);
+  padding: 2.75rem 1.5rem 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
   position: relative;
   margin-top: 1em;
 }
@@ -17,7 +17,7 @@ footer {
 }
 
 .footer-section h3 {
-  color: var(--azul-brasil);
+  color: var(--amarelo-ouro);
   margin-bottom: 1em;
   font-size: 1.2rem;
 }
@@ -25,12 +25,16 @@ footer {
 .footer-logo {
   text-align: left;
   margin-bottom: 1em;
+  display: inline-flex;
+  padding: 0.6rem 0.8rem;
+  background: white;
+  border-radius: 0.25rem;
 }
 
 .footer-logo-image {
   width: auto;
   height: auto;
-  max-height: 75px;
+  max-height: 54px;
 }
 
 .footer-links {
@@ -39,7 +43,7 @@ footer {
 }
 
 .footer-links a {
-  color: var(--text-primary);
+  color: rgba(255, 255, 255, 0.86);
   text-decoration: none;
   transition: color 0.3s ease;
   display: block;
@@ -47,8 +51,7 @@ footer {
 }
 
 .footer-links a:hover {
-  color: var(--azul-brasil);
-  transform: translateX(5px);
+  color: var(--amarelo-ouro);
 }
 
 .footer-bottom {
@@ -56,7 +59,7 @@ footer {
   margin-top: 2em;
   margin-bottom: -1em;
   padding-top: 1em;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .footer-section form,
@@ -78,22 +81,22 @@ footer {
 
 .donation-pix-icon {
   font-size: 1.5em;
-  color: var(--azul-brasil);
+  color: var(--amarelo-ouro);
 }
 
 .donation-pix-key {
   font-weight: 600;
   font-size: 1em;
-  color: var(--text-primary);
+  color: white;
 }
 
 .donation-pix-copy-btn {
   margin-left: 8px;
-  background: var(--azul-brasil);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 4px 10px;
+  background: var(--amarelo-ouro);
+  color: var(--azul-brasil);
+  border: 0;
+  border-radius: 0.25rem;
+  padding: 0.45rem 0.75rem;
   cursor: pointer;
   font-weight: 500;
   font-size: 0.95em;
@@ -101,12 +104,12 @@ footer {
 }
 
 .donation-pix-copy-btn:active {
-  background: var(--brand-blue-800);
+  background: var(--brand-gold-600);
 }
 
 .donation-pix-note {
   font-size: 0.95em;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.65);
   margin-top: 6px;
 }
 

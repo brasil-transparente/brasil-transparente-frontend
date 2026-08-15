@@ -1,12 +1,13 @@
 .bar {
-  height: 40px;
+  height: 38px;
   width: 50%;
-  border-radius: 8px;
+  border-radius: 0.25rem;
   display: flex;
   align-items: center;
   color: var(--text-primary);
-  padding-left: 10px;
-  font-weight: bold;
+  padding: 0 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
   animation: fadeInScale 0.5s ease-out forwards;
   white-space: nowrap;
 }
@@ -16,7 +17,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
+  color: var(--azul-brasil);
+  font-size: 0.95rem;
   cursor: pointer;
 }
 
@@ -52,11 +54,11 @@
 
 .bar-container {
   background: var(--surface);
-  border-radius: 0.75rem;
-  margin: 1rem 0;
-  padding: 1rem;
-  box-shadow: var(--card-shadow);
-  transition: var(--transition);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  margin: 0.75rem 0;
+  padding: 1.1rem 1.25rem 1.25rem;
+  box-shadow: none;
   position: relative;
   overflow: hidden;
   opacity: 1;
@@ -65,8 +67,7 @@
 }
 
 .bar-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 39, 118, 0.32);
 }
 
 .bar-container::before {
@@ -74,16 +75,12 @@
   position: absolute;
   left: 0;
   top: 0;
-  height: 100%;
-  width: 4px;
+  height: 3px;
+  width: 100%;
   background: var(--amarelo-ouro);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.bar-container:hover::before {
   opacity: 1;
 }
+
 
 /* Nível 1 (Poder) */
 .bar-container > .bar {
@@ -100,13 +97,13 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 /* Nested bar containers */
 .children-container .bar-container {
   margin: 0;
   margin-left: 1rem;
-  border-left: 3px solid var(--border-subtle);
+  border-left: 3px solid var(--brand-blue-100);
   padding-left: 1rem;
 }

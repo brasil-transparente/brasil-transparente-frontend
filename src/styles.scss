@@ -1,15 +1,16 @@
 :root {
-  --background: #eef2f7;
+  --background: #f4f6f8;
   --surface: #ffffff;
-  --surface-muted: #f8fafc;
-  --text-primary: #111827;
-  --text-muted: #6b7280;
-  --border-subtle: rgba(17, 24, 39, 0.08);
+  --surface-muted: #f7f9fc;
+  --text-primary: #182433;
+  --text-muted: #596779;
+  --border-subtle: #dce3eb;
   --azul-brasil: #002776;
   --amarelo-ouro: #ffdf00;
   --verde-escuro: #075213;
   --brand-blue-800: #001c57;
   --brand-blue-600: #003399;
+  --brand-blue-100: #e8eef8;
   --brand-gold-600: #ffbf00;
   --brand-green-700: #065c17;
   --home-hero-base: #e7eef7;
@@ -24,8 +25,8 @@
 --chart-4: #ffe24d; /* unchanged */
   --chart-5: #ced0d3;
   --chart-muted: #9ca3af;
-  --card-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --card-shadow: 0 10px 28px rgba(0, 39, 118, 0.07);
+  --transition: 180ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 * {
@@ -35,10 +36,7 @@
 body {
   margin: 0;
   color: var(--text-primary);
-  background: radial-gradient(900px 420px at 50% -120px, rgba(0, 39, 118, 0.08) 0%, rgba(0, 39, 118, 0) 60%),
-    radial-gradient(900px 420px at 90% 10%, rgba(7, 82, 19, 0.10) 0%, rgba(7, 82, 19, 0) 58%),
-    radial-gradient(900px 420px at 10% 10%, rgba(255, 223, 0, 0.10) 0%, rgba(255, 223, 0, 0) 55%),
-    var(--background);
+  background: var(--background);
   line-height: 1.5;
   overflow-x: hidden;
   width: 100%;
@@ -46,11 +44,12 @@ body {
 
 // Shadow para os cards que são expandíveis. Está aqui pois é de uso geral.
 .content-container {
-  max-width: 800px;
-  margin: 1.5em auto;
-  padding: 2rem;
+  max-width: 920px;
+  margin: 2.5rem auto;
+  padding: 2.5rem;
   background: var(--surface);
-  border-radius: 0.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
   box-shadow: var(--card-shadow);
 }
 
@@ -64,8 +63,8 @@ a:hover {
 
 main {
   min-height: 600px;
-  padding: 1rem;
-  max-width: 1350px;
+  padding: 2rem 1.5rem 3rem;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
@@ -83,7 +82,10 @@ main {
 }
 
 h1 {
-  font-size: 1.5rem;
+  color: var(--azul-brasil);
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  letter-spacing: -0.025em;
+  margin: 0 0 1.25rem;
 }
 
 .text-heavy a {
@@ -150,14 +152,6 @@ h1 {
   margin-left: 6px;
 }
 
-@media (max-width: 480px) {
-  .report-button {
-    width: 100%;
-    padding: 0.85rem;
-    font-size: 0.8rem;
-  }
-}
-
 /* Tablet */
 @media (max-width: 920px) {
   .content-container {
@@ -172,12 +166,12 @@ h1 {
   }
 
   .content-container {
-    margin: 1.75em 0.5em;
-    padding: 1rem;
+    margin: 1.25rem 0.5rem;
+    padding: 1.5rem;
   }
 
   main {
-    padding: 0.5rem;
+    padding: 1.25rem 1rem 2rem;
   }
 }
 
