@@ -3,6 +3,16 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { VoltarInicioComponent } from '../voltar-inicio/voltar-inicio.component';
 
+export interface AnalysisItem {
+  id: string;
+  title: string;
+  category: string;
+  icon: string;
+  description: string;
+  route: string;
+  tagColor?: string;
+}
+
 @Component({
   selector: 'app-analises',
   imports: [
@@ -15,47 +25,54 @@ import { VoltarInicioComponent } from '../voltar-inicio/voltar-inicio.component'
   standalone: true
 })
 export class AnalisesComponent {
-  
-  analyses = [
+  analyses: AnalysisItem[] = [
     {
       id: 'aposentadorias-pensoes',
       title: 'Aposentadorias e Pensões',
-      description: 'Análise dos gastos da União com aposentadorias e pensões, incluindo RGPS, BPC, militares e servidores civis públicos.',
+      category: 'Previdência Social',
+      icon: 'fa-user-clock',
+      description: 'Análise dos gastos da União com aposentadorias e pensões, detalhando RGPS, BPC, militares e servidores públicos civis.',
       route: '/aposentadorias-pensoes'
     },
     {
       id: 'custo-juros-divida',
-      title: 'Juros da Dívida Pública Federal',
-      description: 'Análise do volume dos gastos com juros da dívida pública federal e sua relação com a dívida pública federal.',
+      title: 'Juros da Dívida Pública',
+      category: 'Finanças Públicas',
+      icon: 'fa-chart-line',
+      description: 'Análise do impacto dos encargos financeiros, volume dos juros e relação com a dívida consolidada da União.',
       route: '/custo-juros-divida'
     },
     {
       id: 'gastos-defesa-aposentadoria',
       title: 'Aposentadorias Militares',
-      description: 'Análise do volume e proporção de gastos do Ministério da Defesa em relação a militares ativos e inativos.',
+      category: 'Defesa Nacional',
+      icon: 'fa-shield-alt',
+      description: 'Análise do volume e proporção dos gastos do Ministério da Defesa entre efetivo militar ativo e inativos/pensionistas.',
       route: '/gastos-defesa-aposentadoria'
     },
     {
       id: 'gastos-bolsa-familia',
-      title: 'Bolsa Família',
-      description: 'Análise dos gastos com o programa Bolsa Família e seu impacto fiscal.',
+      title: 'Bolsa Família & Transferência de Renda',
+      category: 'Assistência Social',
+      icon: 'fa-hands-helping',
+      description: 'Análise dos dispêndios federais com o programa Bolsa Família, evolução do benefício e impacto orçamentário.',
       route: '/gastos-bolsa-familia'
     },
     {
       id: 'gastos-seguranca',
-      title: 'Segurança',
-      description: 'Análise dos gastos federais com seguranca.',
+      title: 'Segurança Pública',
+      category: 'Segurança & Justiça',
+      icon: 'fa-shield-halved',
+      description: 'Análise dos gastos e investimentos federais em policiamento, infraestrutura penitenciária e segurança pública.',
       route: '/gastos-seguranca'
     },
     {
       id: 'gastos-educacao',
-      title: 'Educação',
-      description: 'Análise dos investimentos federais em educação e seus programas prioritários.',
+      title: 'Educação & Ensino Superior',
+      category: 'Educação',
+      icon: 'fa-graduation-cap',
+      description: 'Análise detalhada dos investimentos do Ministério da Educação, universidades federais e programas prioritários.',
       route: '/gastos-educacao'
     }
   ];
-
-  navigateToAnalysis(analysisId: string): void {
-    // Navigation will be handled by Angular Router in the template
-  }
 }

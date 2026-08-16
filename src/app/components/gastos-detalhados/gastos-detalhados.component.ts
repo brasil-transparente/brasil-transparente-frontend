@@ -1,6 +1,5 @@
 import {
   Component,
-  effect,
   inject,
   OnDestroy,
   OnInit,
@@ -13,7 +12,6 @@ import { StorageService } from '../../services/storage/storage.service';
 import { CommonModule } from '@angular/common';
 import { ToggleBarItemComponent } from '../toggle-bar-item/toggle-bar-item.component';
 import { Subject, takeUntil } from 'rxjs';
-import { Poder } from '../../models/poder.model';
 import { CommomWithChildren } from '../../models/commom.model';
 import { ReportType } from '../../models/tipos-relatorios.model';
 import { CarregandoDados } from 'app/carregando-dados/carregando-dados';
@@ -77,14 +75,10 @@ export class GastosDetalhadosComponent implements OnInit, OnDestroy {
   }
 
   getBarColor(level: number): string {
-    const colors = [
-      'var(--chart-1)',
-      'var(--chart-2)',
-      'var(--chart-3)',
-      'var(--chart-4)',
-      'var(--chart-5)'
-    ];
-    return colors[level] ?? 'var(--chart-1)';
+    if (level === 4) {
+      return '#94a3b8';
+    }
+    return 'var(--amarelo-ouro)';
   }
 
   formatLargeCurrency(value: number): string {
