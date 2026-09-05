@@ -30,7 +30,7 @@
       </nav>
     </div>
 
-    @if (router.url === '/' || router.url === '/gastos-detalhados') {
+    @if (router.url === '/' || router.url === '/gastos-detalhados' || router.url === '/calculadora') {
       <div class="report-switcher-wrapper">
         <div class="report-switcher" role="tablist" aria-label="Visualização do relatório">
           <a
@@ -41,7 +41,8 @@
             [attr.aria-selected]="router.url === '/'"
           >
             <i class="fas fa-layer-group tab-icon"></i>
-            <span>Resumo dos Gastos</span>
+            <span class="tab-label-full">Resumo dos Gastos</span>
+            <span class="tab-label-short">Resumo</span>
           </a>
           <a
             routerLink="/gastos-detalhados"
@@ -51,7 +52,19 @@
             [attr.aria-selected]="router.url === '/gastos-detalhados'"
           >
             <i class="fas fa-sitemap tab-icon"></i>
-            <span>Gastos Detalhados</span>
+            <span class="tab-label-full">Gastos Detalhados</span>
+            <span class="tab-label-short">Detalhados</span>
+          </a>
+          <a
+            routerLink="/calculadora"
+            class="report-tab"
+            [class.active]="router.url === '/calculadora'"
+            role="tab"
+            [attr.aria-selected]="router.url === '/calculadora'"
+          >
+            <i class="fas fa-calculator tab-icon"></i>
+            <span class="tab-label-full">Calculadora de Contribuição</span>
+            <span class="tab-label-short">Calculadora</span>
           </a>
         </div>
       </div>

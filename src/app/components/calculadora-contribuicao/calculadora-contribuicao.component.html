@@ -1,0 +1,225 @@
+<main class="calculadora-page">
+  <!-- Card do Formulário da Calculadora -->
+  <section class="calculator-card" aria-labelledby="calc-title">
+    <div class="calculator-header">
+      <div class="header-icon">
+        <i class="fas fa-calculator" aria-hidden="true"></i>
+      </div>
+      <div class="header-titles">
+        <h1 id="calc-title" class="calculator-title">Calculadora de Contribuição Federal - 2025</h1>
+        <p class="calculator-subtitle">
+          Escolha o modo de cálculo rápido por perfil ou informe o valor exato pago no ano de 2025.
+        </p>
+      </div>
+    </div>
+
+    <!-- Tabs Nav -->
+    <div class="calculator-tabs" role="tablist" aria-label="Modo de cálculo da contribuição">
+      <button
+        type="button"
+        class="tab-btn"
+        [class.active]="activeTab === 'estimativa'"
+        role="tab"
+        [attr.aria-selected]="activeTab === 'estimativa'"
+        (click)="setTab('estimativa')"
+      >
+        <i class="fas fa-magic" aria-hidden="true"></i>
+        <span>Estimativa Rápida</span>
+      </button>
+      <button
+        type="button"
+        class="tab-btn"
+        [class.active]="activeTab === 'exato'"
+        role="tab"
+        [attr.aria-selected]="activeTab === 'exato'"
+        (click)="setTab('exato')"
+      >
+        <i class="fas fa-receipt" aria-hidden="true"></i>
+        <span>Valor Exato</span>
+      </button>
+    </div>
+
+    <!-- Form Body -->
+    <div class="calculator-body">
+      <!-- Aba 1: Estimativa Rápida -->
+      @if (activeTab === 'estimativa') {
+        <div class="tab-content" role="tabpanel">
+          <div class="form-grid">
+            <!-- Perfil Profissional -->
+            <div class="form-group full-width">
+              <label for="profile-select" class="form-label">
+                <i class="fas fa-user-tag" aria-hidden="true"></i> Perfil Profissional
+              </label>
+              <select
+                id="profile-select"
+                class="form-select"
+                [(ngModel)]="selectedProfile"
+              >
+                @for (profile of profiles; track profile.id) {
+                  <option [value]="profile.id">{{ profile.label }}</option>
+                }
+              </select>
+            </div>
+
+            <!-- Renda Mensal Bruta -->
+            <div class="form-group">
+              <label for="renda-input" class="form-label">
+                <i class="fas fa-money-bill-wave" aria-hidden="true"></i> Renda Mensal Bruta
+              </label>
+              <div class="input-wrapper">
+                <input
+                  id="renda-input"
+                  type="text"
+                  inputmode="numeric"
+                  class="form-input"
+                  [ngModel]="rendaMensalInput"
+                  (ngModelChange)="onRendaMensalChange($event)"
+                  (keydown)="onlyNumbersKey($event)"
+                  (paste)="onPasteOnlyNumbers($event, 'renda')"
+                  placeholder="R$ 0,00"
+                  maxlength="18"
+                />
+              </div>
+            </div>
+
+            <!-- Estimativa de Gastos Pessoais -->
+            <div class="form-group">
+              <div class="label-with-value">
+                <label for="gastos-slider" class="form-label">
+                  <i class="fas fa-shopping-cart" aria-hidden="true"></i> Estimativa de Gastos Pessoais
+                </label>
+                <span class="slider-badge">{{ percentualGastos }}% da renda</span>
+              </div>
+              <div class="slider-wrapper">
+                <input
+                  id="gastos-slider"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="5"
+                  class="form-slider"
+                  [(ngModel)]="percentualGastos"
+                />
+                <div class="slider-marks">
+                  <span>0%</span>
+                  <span>50%</span>
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Aba 2: Valor Exato -->
+      @if (activeTab === 'exato') {
+        <div class="tab-content" role="tabpanel">
+          <div class="form-group full-width">
+            <label for="valor-exato-input" class="form-label">
+              <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i> Imposto Federal Pago no Ano
+            </label>
+            <div class="input-wrapper">
+              <input
+                id="valor-exato-input"
+                type="text"
+                inputmode="numeric"
+                class="form-input"
+                [ngModel]="valorExatoInput"
+                (ngModelChange)="onValorExatoChange($event)"
+                (keydown)="onlyNumbersKey($event)"
+                (paste)="onPasteOnlyNumbers($event, 'exato')"
+                placeholder="R$ 0,00"
+                maxlength="18"
+              />
+            </div>
+            <span class="form-help">
+              Informe o valor total consolidado de tributos federais (IRPF, PIS, COFINS, INSS, etc.) pagos no último ano.
+            </span>
+          </div>
+        </div>
+      }
+
+      <!-- Privacy Note -->
+      <div class="privacy-note">
+        <i class="fas fa-lock" aria-hidden="true"></i>
+        <span>
+          Cálculo 100% anônimo e processado no seu próprio navegador. Nenhum dado financeiro informado sai do seu dispositivo ou é enviado para nossos servidores.
+        </span>
+      </div>
+
+      <!-- Action Button -->
+      <div class="action-bar">
+        <button
+          type="button"
+          class="calculate-btn"
+          (click)="calculateTax()"
+        >
+          <i class="fas fa-calculator" aria-hidden="true"></i>
+          <span>Calcular Minha Contribuição</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resultados da Calculadora -->
+  @if (hasCalculated()) {
+    <section class="results-section" aria-label="Resultado da sua contribuição">
+      @if (calculationResult(); as calc) {
+        <div class="user-result-banner" role="region" aria-label="Resumo do resultado">
+          <div class="result-banner-content">
+            <i class="fas fa-hand-holding-usd result-banner-icon" aria-hidden="true"></i>
+            <p class="result-banner-text">
+              @if (calc.mode === 'exato') {
+                Com base no valor informado, você pagou
+                <strong class="result-highlight">{{ formatCurrency(calc.totalImpostoFederalAnual) }}</strong>
+                em tributos federais em 2025. Veja a distribuição do seu dinheiro:
+              } @else {
+                Com base nos seus dados, você pagou aproximadamente
+                <strong class="result-highlight">{{ formatCurrency(calc.totalImpostoFederalAnual) }}</strong>
+                em tributos federais em 2025. Veja a distribuição do seu dinheiro:
+              }
+            </p>
+          </div>
+        </div>
+      }
+
+      @if (isReportLoading()) {
+        <app-carregando-dados
+          [skeletonCount]="6"
+          [activeReport]="reportType.Simplificado"
+        />
+      } @else {
+        <div class="simplified-report">
+          <div class="simplified-bars">
+            @for (item of simplifiedData; track item.despesaSimplificadaId) {
+              <div class="bar-wrapper">
+                <app-toggle-bar-item
+                  [name]="item.name"
+                  [level]="0"
+                  [totalValueSpent]="getUserContribution(item)"
+                  [percentageOfTotal]="item.percentageOfTotal"
+                  [barColor]="getBarColor()"
+                  [isLastLevel]="true"
+                  [isBarExpanded]="false"
+                ></app-toggle-bar-item>
+
+                @if (item.name.toLowerCase() === 'outros') {
+                  <div class="outros-explanation">
+                    <span class="outros-text">
+                      <i class="fas fa-info-circle" aria-hidden="true"></i>
+                      Quer saber mais detalhes da composição dos itens acima?
+                    </span>
+                    <a routerLink="/gastos-detalhados" class="outros-link-btn">
+                      <span>Ver Gastos Detalhados</span>
+                      <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </section>
+  }
+</main>

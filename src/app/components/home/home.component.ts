@@ -14,7 +14,6 @@ import { ReportType } from '../../models/tipos-relatorios.model';
 import { Subject, takeUntil } from 'rxjs';
 import { DespesaSimplificada } from '../../models/despesa-simplificada.model';
 import { CarregandoDados } from 'app/carregando-dados/carregando-dados';
-
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -22,7 +21,12 @@ import { RouterLink } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, RouterLink, ToggleBarItemComponent, CarregandoDados]
+  imports: [
+    CommonModule,
+    RouterLink,
+    ToggleBarItemComponent,
+    CarregandoDados
+  ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private readonly apiService: ApiService = inject(ApiService);
@@ -68,12 +72,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.apiService
       .getDespesaSimplificada(this.federalEntityId)
       .subscribe(data => {
-        this.simplifiedData = data;
+        this.simplifiedData = this.sortDespesaSimplificada(data);
         this.isLoading.set(false);
       });
   }
 
-  getBarColor(level: number): string {
+  /**
+   * Sort list from highest to lowest percentageOfTotal,
+   * but force category with name "Outros" (case-insensitive) to be the last element.
+   */
+  sortDespesaSimplificada(data: DespesaSimplificada[]): DespesaSimplificada[] {
+    if (!data) return [];
+    const outrosItems = data.filter(
+      item => item.name?.trim().toLowerCase() === 'outros'
+    );
+    const normalItems = data.filter(
+      item => item.name?.trim().toLowerCase() !== 'outros'
+    );
+
+    normalItems.sort((a, b) => b.percentageOfTotal - a.percentageOfTotal);
+
+    return [...normalItems, ...outrosItems];
+  }
+
+  getBarColor(): string {
     return 'var(--amarelo-ouro)';
   }
 
