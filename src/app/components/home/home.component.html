@@ -10,7 +10,7 @@
         <span class="live-indicator">UNIÃO FEDERAL • EXERCÍCIO 2025</span>
       </div>
 
-      <h2 class="total-title">Total gasto pelo Governo Federal em 2025</h2>
+      <h1 class="total-title">Total gasto pelo Governo Federal em 2025</h1>
 
       <div
         (mouseenter)="showRawTotal.set(true)"
@@ -47,15 +47,30 @@
       <div class="simplified-report">
         <div class="simplified-bars">
           @for(item of simplifiedData; track item.despesaSimplificadaId) {
-            <app-toggle-bar-item
-              [name]="item.name"
-              [level]="0"
-              [totalValueSpent]="item.totalValue"
-              [percentageOfTotal]="item.percentageOfTotal"
-              [barColor]="getBarColor(0)"
-              [isLastLevel]="true"
-              [isBarExpanded]="false"
-            ></app-toggle-bar-item>
+            <div class="bar-wrapper">
+              <app-toggle-bar-item
+                [name]="item.name"
+                [level]="0"
+                [totalValueSpent]="item.totalValue"
+                [percentageOfTotal]="item.percentageOfTotal"
+                [barColor]="getBarColor(0)"
+                [isLastLevel]="true"
+                [isBarExpanded]="false"
+              ></app-toggle-bar-item>
+
+              @if (item.name.toLowerCase() === 'outros') {
+                <div class="outros-explanation">
+                  <span class="outros-text">
+                    <i class="fas fa-info-circle"></i>
+                    Quer saber mais detalhes da composição dos itens acima?
+                  </span>
+                  <a routerLink="/gastos-detalhados" class="outros-link-btn">
+                    <span>Ver Gastos Detalhados</span>
+                    <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
+              }
+            </div>
           }
         </div>
       </div>
