@@ -112,6 +112,43 @@
   }
 }
 
+/* User Calculation Result Banner */
+.user-result-banner {
+  margin: 1.25rem 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--azul-brasil-subtle) 0%, #e6efff 100%);
+  border: 1px solid rgba(0, 39, 118, 0.2);
+  border-left: 5px solid var(--azul-brasil);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  animation: fadeInScale 0.35s ease-out;
+
+  .result-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .result-banner-icon {
+    font-size: 1.85rem;
+    color: var(--azul-brasil);
+    flex-shrink: 0;
+  }
+
+  .result-banner-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin: 0;
+
+    .result-highlight {
+      color: var(--azul-brasil);
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+  }
+}
+
 .report-section {
   margin-top: 1.25rem;
 }
@@ -236,6 +273,24 @@
 
   .total-hint {
     font-size: 0.675rem;
+  }
+
+  .user-result-banner {
+    padding: 1rem;
+
+    .result-banner-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .result-banner-text {
+      font-size: 0.9rem;
+
+      .result-highlight {
+        font-size: 1rem;
+      }
+    }
   }
 
   .section-title {

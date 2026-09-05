@@ -5,6 +5,7 @@
       [activeReport]="ReportType.Simplificado"
     />
   } @else {
+    <!-- Painel Geral de Despesas da União -->
     <section class="total-display" aria-label="Resumo do total gasto">
       <div class="total-card-header">
         <span class="live-indicator">UNIÃO FEDERAL • EXERCÍCIO 2025</span>
@@ -53,7 +54,7 @@
                 [level]="0"
                 [totalValueSpent]="item.totalValue"
                 [percentageOfTotal]="item.percentageOfTotal"
-                [barColor]="getBarColor(0)"
+                [barColor]="getBarColor()"
                 [isLastLevel]="true"
                 [isBarExpanded]="false"
               ></app-toggle-bar-item>

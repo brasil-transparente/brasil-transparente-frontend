@@ -26,6 +26,7 @@ export class ToggleBarItemComponent {
   percentageOfTotal: InputSignal<number> = input.required<number>();
   barColor: InputSignal<string> = input('var(--chart-1)');
   isLastLevel: InputSignal<boolean> = input(false);
+  userContribution: InputSignal<number | null> = input<number | null>(null);
   showRawTotal = signal(false);
 
   toggle = output<void>();

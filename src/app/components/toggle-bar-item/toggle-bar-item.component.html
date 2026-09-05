@@ -2,6 +2,7 @@
   class="bar-card"
   [class.is-expanded]="isBarExpanded()"
   [class.is-leaf]="isLastLevel() && level() > 0"
+  [class.has-user-contribution]="userContribution() !== null"
   [attr.data-level]="level()"
 >
   <div
@@ -21,7 +22,25 @@
           <i class="fas" [class.fa-minus]="isBarExpanded()" [class.fa-plus]="!isBarExpanded()"></i>
         </button>
       }
-      <span class="category-name">{{ name() }}</span>
+      <span class="category-name">
+        {{ name() }}
+        @if (name().toLowerCase() === 'outros') {
+          <span
+            class="info-tooltip-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Informações sobre a categoria Outros"
+            (click)="$event.stopPropagation()"
+            (keydown.enter)="$event.stopPropagation()"
+            (keydown.space)="$event.stopPropagation()"
+          >
+            <i class="fas fa-info-circle"></i>
+            <span class="info-tooltip-content">
+              A categoria "Outros" reúne despesas de menor porte que não se enquadram nos grandes grupos acima. Para entender a composição detalhada de cada item, acesse Gastos Detalhados.
+            </span>
+          </span>
+        }
+      </span>
     </div>
 
     <div class="header-right">
@@ -53,6 +72,18 @@
       [style.backgroundColor]="barColor()"
     ></div>
   </div>
+
+  @if (userContribution() !== null) {
+    <div class="user-contribution-row">
+      <span class="user-contribution-label">
+        <i class="fas fa-coins"></i>
+        Sua Contribuição Direta:
+      </span>
+      <span class="user-contribution-value">
+        {{ formatCurrency(userContribution()!) }}
+      </span>
+    </div>
+  }
 
   @if(isBarExpanded() && !isLastLevel()) {
     <div class="children-container">
