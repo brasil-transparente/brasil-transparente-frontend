@@ -1,0 +1,413 @@
+.calculadora-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem 1.25rem;
+}
+
+.calculator-card {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow var(--transition);
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.calculator-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+
+  .header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-md);
+    background: var(--azul-brasil-subtle);
+    color: var(--azul-brasil);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .header-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+
+    .calculator-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--azul-brasil);
+      margin: 0;
+    }
+
+    .calculator-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+  }
+}
+
+/* Tabs */
+.calculator-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  background: var(--surface-muted);
+  border-radius: var(--radius-md);
+  margin-bottom: 1.25rem;
+
+  .tab-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition);
+
+    i {
+      font-size: 0.85rem;
+    }
+
+    &:hover {
+      color: var(--azul-brasil);
+    }
+
+    &.active {
+      background: var(--surface);
+      color: var(--azul-brasil);
+      box-shadow: var(--shadow-xs);
+    }
+  }
+}
+
+/* Body & Forms */
+.calculator-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  .form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    i {
+      color: var(--azul-brasil-light);
+      font-size: 0.85rem;
+    }
+  }
+
+  .form-help {
+    font-size: 0.775rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+}
+
+.form-select,
+.form-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.925rem;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition), box-shadow var(--transition);
+
+  &:focus {
+    outline: none;
+    border-color: var(--azul-brasil-light);
+    box-shadow: 0 0 0 3px rgba(0, 39, 118, 0.12);
+  }
+}
+
+.label-with-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slider-badge {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: var(--azul-brasil);
+  background: var(--azul-brasil-subtle);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  .form-slider {
+    width: 100%;
+    accent-color: var(--azul-brasil);
+    cursor: pointer;
+  }
+
+  .slider-marks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.725rem;
+    color: var(--text-muted);
+  }
+}
+
+/* Privacy Note */
+.privacy-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--surface-muted);
+  border-radius: var(--radius-md);
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+
+  i {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+}
+
+/* Action Bar */
+.action-bar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.calculate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--azul-brasil) 0%, var(--azul-brasil-dark) 100%);
+  color: #ffffff;
+  font-size: 0.925rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+
+  &:hover {
+    background: linear-gradient(135deg, var(--azul-brasil-light) 0%, var(--azul-brasil) 100%);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Results Section */
+.results-section {
+  margin-top: 1.5rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.user-result-banner {
+  margin-bottom: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--azul-brasil-subtle) 0%, #e6efff 100%);
+  border: 1px solid rgba(0, 39, 118, 0.2);
+  border-left: 5px solid var(--azul-brasil);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+
+  .result-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .result-banner-icon {
+    font-size: 1.85rem;
+    color: var(--azul-brasil);
+    flex-shrink: 0;
+  }
+
+  .result-banner-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin: 0;
+
+    .result-highlight {
+      color: var(--azul-brasil);
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+  }
+}
+
+.simplified-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.bar-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.outros-explanation {
+  margin-top: -0.25rem;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface-muted);
+  border: 1px dashed var(--border-medium);
+  border-top: none;
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  animation: fadeIn 0.3s ease-out;
+
+  .outros-text {
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 500;
+    line-height: 1.4;
+
+    i {
+      color: var(--azul-brasil);
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+  }
+
+  .outros-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+    background: var(--azul-brasil);
+    color: #ffffff;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-xs);
+
+    i {
+      font-size: 0.75rem;
+      transition: transform var(--transition);
+    }
+
+    &:hover {
+      background: var(--azul-brasil-light);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+
+      i {
+        transform: translateX(3px);
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+  .calculadora-page {
+    padding: 0.65rem 0.85rem 1.25rem;
+  }
+
+  .calculator-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-bar {
+    .calculate-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .user-result-banner {
+    padding: 1rem;
+
+    .result-banner-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .result-banner-text {
+      font-size: 0.9rem;
+
+      .result-highlight {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .outros-explanation {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.65rem 0.85rem;
+
+    .outros-link-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

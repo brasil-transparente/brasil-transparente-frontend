@@ -15,6 +15,13 @@ export const routes: Routes = [
       )
   },
   {
+    path: 'calculadora',
+    loadComponent: () =>
+      import(
+        './components/calculadora-contribuicao/calculadora-contribuicao.component'
+      ).then(m => m.CalculadoraContribuicaoComponent)
+  },
+  {
     path: 'sobre',
     loadComponent: () =>
       import('./components/sobre/sobre.component').then(m => m.SobreComponent)
