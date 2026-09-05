@@ -28,6 +28,7 @@ export class ToggleBarItemComponent {
   isLastLevel: InputSignal<boolean> = input(false);
   userContribution: InputSignal<number | null> = input<number | null>(null);
   showRawTotal = signal(false);
+  showOutrosInfo = signal(false);
 
   toggle = output<void>();
 
@@ -35,6 +36,11 @@ export class ToggleBarItemComponent {
     if (!this.isLastLevel()) {
       this.toggle.emit();
     }
+  }
+
+  toggleOutrosInfo(event: Event): void {
+    event.stopPropagation();
+    this.showOutrosInfo.set(!this.showOutrosInfo());
   }
 
   formatLargeCurrency(value: number): string {
