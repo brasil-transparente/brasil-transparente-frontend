@@ -25,20 +25,18 @@
       <span class="category-name">
         {{ name() }}
         @if (name().toLowerCase() === 'outros') {
-          <span
-            class="info-tooltip-trigger"
-            tabindex="0"
-            role="button"
+          <button
+            type="button"
+            class="info-icon-btn"
+            [class.active]="showOutrosInfo()"
+            (click)="toggleOutrosInfo($event)"
+            (keydown.enter)="toggleOutrosInfo($event)"
+            (keydown.space)="toggleOutrosInfo($event); $event.preventDefault()"
             aria-label="Informações sobre a categoria Outros"
-            (click)="$event.stopPropagation()"
-            (keydown.enter)="$event.stopPropagation()"
-            (keydown.space)="$event.stopPropagation()"
+            title="Informações sobre a categoria Outros"
           >
             <i class="fas fa-info-circle"></i>
-            <span class="info-tooltip-content">
-              A categoria "Outros" reúne despesas de menor porte que não se enquadram nos grandes grupos acima. Para entender a composição detalhada de cada item, acesse Gastos Detalhados.
-            </span>
-          </span>
+          </button>
         }
       </span>
     </div>
@@ -64,6 +62,27 @@
       </div>
     </div>
   </div>
+
+  @if (name().toLowerCase() === 'outros' && showOutrosInfo()) {
+    <div class="outros-info-popover" (click)="$event.stopPropagation()">
+      <div class="popover-header">
+        <span class="popover-title">
+          <i class="fas fa-info-circle"></i> Sobre a categoria "Outros"
+        </span>
+        <button
+          type="button"
+          class="popover-close-btn"
+          (click)="showOutrosInfo.set(false)"
+          aria-label="Fechar informações"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <p class="popover-body">
+        A categoria <strong>"Outros"</strong> reúne despesas de menor porte que não se enquadram nos grandes grupos acima. Para entender a composição detalhada de cada item, acesse <strong>Gastos Detalhados</strong>.
+      </p>
+    </div>
+  }
 
   <div class="progress-track">
     <div
