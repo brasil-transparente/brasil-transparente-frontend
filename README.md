@@ -3,7 +3,7 @@
 ### Pré-requisitos
 - Node.JS (^20.19.0 || ^22.12.0 || ^24.0.0)
 - Angular CLI (^20.2.0)
-- Preetier
+- Prettier
 - Git
 
 # Passos para rodar o projeto localmente
@@ -26,9 +26,9 @@ npm i -g @angular/cli@20.2.0 prettier
 ```
 
 ### Configuração de variáveis de ambiente
-Configurar o arquivo `environment.ts` localizado em `src\environments\environment.development.ts` com a variável: 
+Configurar o arquivo `environment.ts` localizado em `src/environments/environment.development.ts` com a variável: 
 ```typescript
-apiUrl: 'URL_DA_API'
+apiBase: 'URL_DA_API'
 ```
 
 ### Iniciar o servidor de desenvolvimento local
@@ -37,7 +37,7 @@ apiUrl: 'URL_DA_API'
 npm start
 ```
 
-Ao executar o projeto local, a feature de cache local (localStorage) estará desabilitada. Para habilitar, alterar a variável `SHOULD_CACHE` para `true` no arquivo de environment `src\environments\environment.development.ts`.
+Ao executar o projeto local, a feature de cache local (localStorage) estará desabilitada. Para habilitar, alterar a variável `shouldCache` para `true` no arquivo de environment `src/environments/environment.development.ts`.
 
 ### Build para produção ou testes locais
 

@@ -248,11 +248,11 @@
 /* Mobile adjustments */
 @media (max-width: 600px) {
   .bar-card {
-    padding: 0.75rem 0.9rem;
+    padding: 0.7rem 0.75rem;
   }
 
   .bar-card:not([data-level='0']) {
-    padding: 0.65rem 0.75rem;
+    padding: 0.55rem 0.6rem;
   }
 
   .bar-header {
@@ -276,11 +276,38 @@
   }
 
   .category-name {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
   }
 
   .children-container {
-    margin-left: 0.25rem;
-    padding-left: 0.5rem;
+    margin-left: 0.15rem;
+    padding-left: 0.35rem;
+    border-left-width: 2px;
   }
 }
+
+@media (max-width: 480px) {
+  .bar-card {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .bar-card:not([data-level='0']) {
+    padding: 0.5rem 0.45rem;
+  }
+
+  .children-container {
+    margin-left: 0.05rem;
+    padding-left: 0.25rem;
+    border-left-width: 1.5px;
+  }
+
+  .value-amount {
+    font-size: 0.8rem;
+  }
+
+  .percentage-badge {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.35rem;
+  }
+}
+
