@@ -15,12 +15,14 @@ import { Subject, takeUntil } from 'rxjs';
 import { DespesaSimplificada } from '../../models/despesa-simplificada.model';
 import { CarregandoDados } from 'app/carregando-dados/carregando-dados';
 
+import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, ToggleBarItemComponent, CarregandoDados]
+  imports: [CommonModule, RouterLink, ToggleBarItemComponent, CarregandoDados]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private readonly apiService: ApiService = inject(ApiService);
