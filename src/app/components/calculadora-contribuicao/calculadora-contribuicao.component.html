@@ -54,6 +54,7 @@
                 id="profile-select"
                 class="form-select"
                 [(ngModel)]="selectedProfile"
+                (change)="onProfileChange()"
               >
                 @for (profile of profiles; track profile.id) {
                   <option [value]="profile.id">{{ profile.label }}</option>
@@ -147,6 +148,14 @@
         </span>
       </div>
 
+      <!-- Mensagem de Erro de Validação -->
+      @if (validationError()) {
+        <div class="validation-error" role="alert" aria-live="assertive">
+          <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+          <span>{{ validationError() }}</span>
+        </div>
+      }
+
       <!-- Action Button -->
       <div class="action-bar">
         <button
@@ -172,11 +181,11 @@
               @if (calc.mode === 'exato') {
                 Com base no valor informado, você pagou
                 <strong class="result-highlight">{{ formatCurrency(calc.totalImpostoFederalAnual) }}</strong>
-                em tributos federais em 2025. Veja a distribuição do seu dinheiro:
+                em tributos federais em 2025. Veja a proporção equivalente desse valor nos gastos da União:
               } @else {
                 Com base nos seus dados, você pagou aproximadamente
                 <strong class="result-highlight">{{ formatCurrency(calc.totalImpostoFederalAnual) }}</strong>
-                em tributos federais em 2025. Veja a distribuição do seu dinheiro:
+                em tributos federais em 2025. Veja a proporção equivalente desse valor nos gastos da União:
               }
             </p>
           </div>

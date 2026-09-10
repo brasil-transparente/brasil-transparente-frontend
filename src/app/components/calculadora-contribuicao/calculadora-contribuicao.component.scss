@@ -230,6 +230,29 @@
   justify-content: flex-end;
 }
 
+/* Validação */
+.validation-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  background: #fff8f0;
+  border: 1px solid #f5a623;
+  border-left: 4px solid #e07b00;
+  border-radius: var(--radius-md);
+  font-size: 0.825rem;
+  color: #7a3800;
+  line-height: 1.45;
+  animation: fadeIn 0.2s ease-out;
+
+  i {
+    font-size: 0.875rem;
+    color: #e07b00;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+}
+
 .calculate-btn {
   display: inline-flex;
   align-items: center;
