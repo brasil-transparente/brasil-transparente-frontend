@@ -38,20 +38,18 @@ export class ApiService {
     });
   }
 
-  getTotalValueSpent(federalEntityId: string): Observable<number> {
-    const url = `${ApiService.API_BASE}/unidade-federativa/${federalEntityId}/total-value-spent`;
+  getTotalValueSpent(): Observable<number> {
+    const url = `${ApiService.API_BASE}/total-value-spent`;
     return this.getWithCache<number>(url);
   }
 
-  getDespesaSimplificada(
-    federalEntityId: string
-  ): Observable<DespesaSimplificada[]> {
-    const url = `${ApiService.API_BASE}/despesa-simplificada/${federalEntityId}`;
+  getDespesaSimplificada(): Observable<DespesaSimplificada[]> {
+    const url = `${ApiService.API_BASE}/despesa-simplificada`;
     return this.getWithCache<DespesaSimplificada[]>(url);
   }
 
-  getPoderes(federalEntityId: string): Observable<Poder[]> {
-    const url = `${ApiService.API_BASE}/unidade-federativa/${federalEntityId}/poderes`;
+  getPoderes(): Observable<Poder[]> {
+    const url = `${ApiService.API_BASE}/poderes`;
     return this.getWithCache<Poder[]>(url);
   }
 

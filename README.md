@@ -1,85 +1,98 @@
-## 📦 Instalação e Configuração
+# 🇧🇷 Brasil Transparente - Frontend
+
+Frontend oficial do [Brasil Transparente](https://brasiltransparente.digital/), uma iniciativa open-source desenvolvida em Angular para facilitar o acesso, a visualização e a análise de dados dos gastos públicos federais do Brasil.
+
+---
+
+## Começando
 
 ### Pré-requisitos
-- Node.JS (^20.19.0 || ^22.12.0 || ^24.0.0)
-- Angular CLI (^20.2.0)
-- Prettier
-- Git
+- **Node.js**: `v20.19+` ou `v22 LTS` (recomendado)
+- **Git**
 
-# Passos para rodar o projeto localmente
+> *Nota:* Não é necessário instalar o Angular CLI globalmente; os comandos e scripts utilizam a versão local instalada no projeto.
 
-### Clonar o repositório
+---
+
+### Passo a passo para rodar localmente
+
+1. **Clonar o repositório:**
+   ```bash
+   git clone https://github.com/brasil-transparente/brasil-transparente-frontend.git
+   cd brasil-transparente-frontend
+   ```
+
+2. **Instalar as dependências:**
+   ```bash
+   npm install
+   ```
+
+3. **Configurar as variáveis de ambiente:**
+   As configurações para desenvolvimento local ficam em `src/environments/environment.development.ts`:
+   ```typescript
+   export const environment = {
+     apiBase: 'http://localhost:8080', // Aponte para 'https://api.brasiltransparente.digital' caso não esteja rodando o backend local
+     shouldCache: false,                // Altere para true se desejar habilitar cache local (localStorage)
+     siteUrl: 'https://brasiltransparente.digital'
+   };
+   ```
+
+4. **Iniciar o servidor de desenvolvimento:**
+   ```bash
+   npm start
+   ```
+   Acesse **`http://localhost:4200`** no seu navegador. A aplicação recarrega automaticamente após alterações no código.
+
+---
+
+## Scripts Disponíveis
+
+| Comando | Descrição |
+| --- | --- |
+| `npm start` | Inicia o servidor de desenvolvimento local (`http://localhost:4200`). |
+| `npm run prod` | Inicia o servidor local apontando para a API de produção. |
+| `npm run build:dev` | Gera a build de desenvolvimento na pasta `dist/browser`. |
+| `npm run build:production` | Gera a build otimizada para produção. |
+| `npm run lint` | Executa a verificação estática de código com o ESLint. |
+| `npm test` | Executa os testes unitários com Karma. |
+
+---
+
+## 🐳 Executando com Docker (Opcional)
+
+Se preferir rodar a aplicação através de um contêiner com Nginx:
+
 ```bash
-git clone https://github.com/brasil-transparente/brasil-transparente-frontend.git
-```
-
-Entrar no diretório do projeto
-```bash
-cd brasil-transparente-frontend
-```
-
-Instalar as dependências
-```bash
-npm install
-
-npm i -g @angular/cli@20.2.0 prettier
-```
-
-### Configuração de variáveis de ambiente
-Configurar o arquivo `environment.ts` localizado em `src/environments/environment.development.ts` com a variável: 
-```typescript
-apiBase: 'URL_DA_API'
-```
-
-### Iniciar o servidor de desenvolvimento local
-
-```bash
-npm start
-```
-
-Ao executar o projeto local, a feature de cache local (localStorage) estará desabilitada. Para habilitar, alterar a variável `shouldCache` para `true` no arquivo de environment `src/environments/environment.development.ts`.
-
-### Build para produção ou testes locais
-
-Se você deseja gerar o build sem necessidade de rodar o banco de dados e o backend, é possível passar a variável de ambiente ```production``` utilizando o comando:
-```bash
-docker build --build-arg BUILD_ENV=production -t brasil-transparente-frontend .
-```
-
-Caso queira utilizar o banco e o back local:
-```bash
+# Construir a imagem (usa build de teste por padrão, apontando para a API remota)
 docker build -t brasil-transparente-frontend .
+
+# Ou gerar imagem com ambiente de produção:
+docker build --build-arg BUILD_ENV=production -t brasil-transparente-frontend .
+
+# Iniciar o container
+docker run -d -p 8080:8080 brasil-transparente-frontend
 ```
 
-Após gerado a imagem, rode o container:
+Acesse em **`http://localhost:8080`**.
 
-```bash
-docker run -p 80:8080 brasil-transparente-frontend
-```
-
-Acessar ```http://localhost``` para visualizar a aplicação rodando localmente.
-
-### Testar o arquivo estático gerado
-Se não quiser testar usando o ```npm start``` nem o container docker, você deverá usar algum serviço de host de arquivos locais. 
-Para isso, você deve utilizar um servidor HTTP para servir os arquivos estáticos gerados no diretório `dist/browser`. Você pode usar o `http-server` ou o `serve`. Aqui estão os comandos para ambos (necessário instalar usando `npm i http-server` ou `npm i serve`):
-
-```bash
-npx http-server dist/browser -p 4200
-npx serve dist/browser -p 4200
-```
+---
 
 ## 🤝 Como Contribuir
-- 📌 **Participe no Discord**: A melhor forma de ajudar na contribuição do projeto é estar alinhado com o que está sendo discutido no nosso Discord:
-  https://discord.gg/sQbf3bSzt4
-- 🐛 **Issues existentes**: Dentro do repositório no GitHub mantemos uma lista de Issues que devem trabalhadas, geralmente alocadas dentro de projetos. É possível acompanhar o andamento das entregas por lá.
-- 🛠️ **Reportar problemas/sugestões**: Para reportar bugs e sugerir novas melhorias, por favor, entre em contato com a gente no nosso Discord.
+
+Toda contribuição é bem-vinda! Para colaborar:
+
+1. **Participe no Discord**: Dúvidas, ideias e alinhamentos acontecem no nosso servidor do Discord:  
+   👉 [Entrar no Discord](https://discord.gg/sQbf3bSzt4)
+2. **Issues do GitHub**: Verifique as [Issues](https://github.com/brasil-transparente/brasil-transparente-frontend/issues) abertas para encontrar tarefas disponíveis ou sugerir melhorias.
+3. **Fluxo de Trabalho**:
+   - Crie uma branch para sua tarefa (`git checkout -b feature/minha-melhoria`).
+   - Valide seu código com `npm run lint`.
+   - Abra um Pull Request explicando as mudanças realizadas.
+
+---
 
 ## ⚖️ Licença
+
 [![AGPL-3.0](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-Este projeto está licenciado sob os termos da **GNU Affero General Public License v3.0** (AGPL-3.0).
-- ✅ Liberdade para usar e modificar.
-- 🔁 Exige compartilhamento das modificações.
-- 🌍 Código-fonte deve ser disponibilizado para usuários.
-
-Consulte o arquivo LICENSE.md para o texto completo da licença.
+Este projeto está licenciado sob os termos da [GNU Affero General Public License v3.0 (AGPL-3.0)](LICENSE.md).

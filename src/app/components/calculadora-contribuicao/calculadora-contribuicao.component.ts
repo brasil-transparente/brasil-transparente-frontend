@@ -1,12 +1,9 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ApiService } from '../../services/api/api.service';
 import { DataService } from '../../services/data/data.service';
-import { StorageService } from '../../services/storage/storage.service';
 import { DespesaSimplificada } from '../../models/despesa-simplificada.model';
 import { ToggleBarItemComponent } from '../toggle-bar-item/toggle-bar-item.component';
 import { CarregandoDados } from 'app/carregando-dados/carregando-dados';
@@ -42,11 +39,9 @@ export interface CalculationResult {
   templateUrl: './calculadora-contribuicao.component.html',
   styleUrls: ['./calculadora-contribuicao.component.scss']
 })
-export class CalculadoraContribuicaoComponent implements OnInit, OnDestroy {
+export class CalculadoraContribuicaoComponent {
   private readonly apiService: ApiService = inject(ApiService);
   private readonly dataService: DataService = inject(DataService);
-  private readonly storageService: StorageService = inject(StorageService);
-  private destroy$ = new Subject<void>();
 
   // Parâmetros vigentes para o ano-calendário de 2025.
   private readonly MAX_VALOR_ENTRADA = 100000000; // Teto de segurança (R$ 100 milhões)
@@ -75,7 +70,6 @@ export class CalculadoraContribuicaoComponent implements OnInit, OnDestroy {
   /** Valor mínimo aceitável na aba "Valor Exato" (em R$). */
   private readonly VALOR_EXATO_MINIMO = 1.0;
 
-  federalEntityId = '1';
   reportType = ReportType;
 
   activeTab: 'estimativa' | 'exato' = 'estimativa';
@@ -104,19 +98,6 @@ export class CalculadoraContribuicaoComponent implements OnInit, OnDestroy {
   calculationResult = signal<CalculationResult | null>(null);
   validationError = signal<string | null>(null);
   simplifiedData: DespesaSimplificada[] = [];
-
-  ngOnInit(): void {
-    this.storageService.federalEntityId$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(id => {
-        this.federalEntityId = id;
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 
   setTab(tab: 'estimativa' | 'exato'): void {
     this.activeTab = tab;
@@ -418,7 +399,7 @@ export class CalculadoraContribuicaoComponent implements OnInit, OnDestroy {
   loadUserReport(): void {
     this.isReportLoading.set(true);
     this.apiService
-      .getDespesaSimplificada(this.federalEntityId)
+      .getDespesaSimplificada()
       .subscribe({
         next: (data) => {
           this.simplifiedData = this.sortDespesaSimplificada(data);
