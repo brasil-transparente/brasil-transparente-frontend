@@ -1,6 +1,5 @@
 import { Injectable, signal, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
 import { ReportType } from '../../models/tipos-relatorios.model';
 import { environment } from 'environments/environment.development';
 
@@ -11,53 +10,11 @@ export class StorageService {
   private isBrowser: boolean;
   private static readonly SHOULD_CACHE = environment.shouldCache;
 
-  private static readonly DEFAULT_FEDERAL_ENTITY_IMAGE =
-    'images/estados/uniao.svg';
-
-  private federalEntityNameSubject = new BehaviorSubject<string>(
-    'União Federal'
-  );
-  private federalEntityImageSubject = new BehaviorSubject<string>(
-    StorageService.DEFAULT_FEDERAL_ENTITY_IMAGE
-  );
-  private federalEntityIdSubject = new BehaviorSubject<string>('1');
-
-  federalEntityName$ = this.federalEntityNameSubject.asObservable();
-  federalEntityImage$ = this.federalEntityImageSubject.asObservable();
-  federalEntityId$ = this.federalEntityIdSubject.asObservable();
-
   activeReport = signal<ReportType>(ReportType.Simplificado);
 
   constructor(@Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
 
-    if (this.isBrowser) {
-      this.loadFromLocalStorage();
-    }
-  }
-
-  private loadFromLocalStorage(): void {
-    if (!this.isBrowser) return;
-
-    const name = localStorage.getItem('federalEntityName');
-    const image = localStorage.getItem('federalEntityImage');
-    const id = localStorage.getItem('federalEntityId');
-
-    if (name) this.federalEntityNameSubject.next(name);
-    if (image) this.federalEntityImageSubject.next(image);
-    if (id) this.federalEntityIdSubject.next(id);
-  }
-
-  setFederalEntity(name: string, image: string, id: string): void {
-    if (this.isBrowser) {
-      localStorage.setItem('federalEntityName', name);
-      localStorage.setItem('federalEntityImage', image);
-      localStorage.setItem('federalEntityId', id);
-
-      this.federalEntityNameSubject.next(name);
-      this.federalEntityImageSubject.next(image);
-      this.federalEntityIdSubject.next(id);
-    }
   }
 
   private cacheKey(url: string): string {
