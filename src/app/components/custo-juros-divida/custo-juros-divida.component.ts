@@ -3,7 +3,6 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { DataService } from '../../services/data/data.service';
-import { StorageService } from '../../services/storage/storage.service';
 import { VoltarAnalisesComponent } from '../voltar-analises/voltar-analises.component';
 
 @Component({
@@ -18,22 +17,16 @@ import { VoltarAnalisesComponent } from '../voltar-analises/voltar-analises.comp
   standalone: true
 })
 export class CustoJurosDividaComponent implements OnInit {
-  private readonly storageService: StorageService = inject(StorageService);
   private readonly dataService: DataService = inject(DataService);
   private readonly titleService: Title = inject(Title);
   private readonly metaService: Meta = inject(Meta);
 
-  federalEntityId = '1';
   isLoading = signal(true);
   dados: any[] = [];
 
   ngOnInit(): void {
     this.setupSEO();
-    this.storageService.federalEntityId$
-      .subscribe(id => {
-        this.federalEntityId = id;
-        this.loadData();
-      });
+    this.loadData();
   }
 
   setupSEO(): void {

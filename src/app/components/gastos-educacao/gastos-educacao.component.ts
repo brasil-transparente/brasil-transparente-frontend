@@ -1,9 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VoltarAnalisesComponent } from '../voltar-analises/voltar-analises.component';
-import { ApiService } from '../../services/api/api.service';
 import { DataService } from '../../services/data/data.service';
-import { StorageService } from '../../services/storage/storage.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -19,24 +17,17 @@ import { Title, Meta } from '@angular/platform-browser';
   standalone: true
 })
 export class GastosEducacaoComponent implements OnInit {
-  private readonly apiService: ApiService = inject(ApiService);
   private readonly dataService: DataService = inject(DataService);
-  private readonly storageService: StorageService = inject(StorageService);
   private readonly titleService: Title = inject(Title);
   private readonly metaService: Meta = inject(Meta);
 
-  federalEntityId = '1';
   isLoading = signal(true);
   dados: any[] = [];
   showRawTotal = signal(false);
 
   ngOnInit(): void {
     this.setupSEO();
-    this.storageService.federalEntityId$
-      .subscribe(id => {
-        this.federalEntityId = id;
-        this.loadData();
-      });
+    this.loadData();
   }
 
   setupSEO(): void {

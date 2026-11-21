@@ -1,17 +1,14 @@
 import {
   Component,
   inject,
-  OnDestroy,
   OnInit,
   signal,
   ViewEncapsulation
 } from '@angular/core';
 import { ApiService } from '../../services/api/api.service';
 import { DataService } from '../../services/data/data.service';
-import { StorageService } from '../../services/storage/storage.service';
 import { CommonModule } from '@angular/common';
 import { ToggleBarItemComponent } from '../toggle-bar-item/toggle-bar-item.component';
-import { Subject, takeUntil } from 'rxjs';
 import { CommomWithChildren } from '../../models/commom.model';
 import { ReportType } from '../../models/tipos-relatorios.model';
 import { CarregandoDados } from 'app/carregando-dados/carregando-dados';
@@ -24,13 +21,9 @@ import { CarregandoDados } from 'app/carregando-dados/carregando-dados';
   encapsulation: ViewEncapsulation.None,
   imports: [CommonModule, ToggleBarItemComponent, CarregandoDados]
 })
-export class GastosDetalhadosComponent implements OnInit, OnDestroy {
+export class GastosDetalhadosComponent implements OnInit {
   private readonly apiService: ApiService = inject(ApiService);
   private readonly dataService: DataService = inject(DataService);
-  private readonly storageService: StorageService = inject(StorageService);
-  private destroy$ = new Subject<void>();
-
-  federalEntityId = '1';
   totalValue = 0;
   isLoading = signal(true);
   poderes: CommomWithChildren[] = [];
@@ -39,23 +32,13 @@ export class GastosDetalhadosComponent implements OnInit, OnDestroy {
   ReportType = ReportType;
 
   ngOnInit(): void {
-    this.storageService.federalEntityId$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(id => {
-        this.federalEntityId = id;
-        this.loadData();
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.loadData();
   }
 
   loadData(): void {
     this.isLoading.set(true);
     this.apiService
-      .getTotalValueSpent(this.federalEntityId)
+      .getTotalValueSpent()
       .subscribe(total => {
         this.totalValue = total;
         this.loadDetailedReport();
@@ -64,7 +47,7 @@ export class GastosDetalhadosComponent implements OnInit, OnDestroy {
 
   loadDetailedReport(): void {
     this.isLoading.set(true);
-    this.apiService.getPoderes(this.federalEntityId).subscribe(poderes => {
+    this.apiService.getPoderes().subscribe(poderes => {
       this.poderes = poderes.map(poder => ({
         ...poder,
         expanded: false,
